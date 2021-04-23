@@ -64,6 +64,34 @@ Now you are into their computer... time to work, mostly automated so I don't los
 
 * Privatezilla
 
+* Lock Hunter - https://lockhunter.com/ -- To delete those files that can't be deleted.
+
+* Czkawka  - https://qarmin.github.io/czkawka/ -- remove unnecessary files from your computer
+
+* Dupe Guru - https://dupeguru.voltaicideas.net/ -- find duplicate files
+
+* Windirstat - https://windirstat.net/ --  disk usage statistics viewer and cleanup tool
+
+* Defraggler -- defrag disk , old school, I usually don't do it.
+
+
+Obsolete:
+* FSLint - https://www.pixelbeat.org/fslint/ -- find and clean various forms of lint on a filesystem , duplicate files, etc
+
+## Recover deleted data
+
+I try to avoid this task, please have BACKUPS! Educate your family and friends on the importance of having BACKUPS
+
+* Recuva -- recover deleted files
+
+Alternatives:
+
+https://alternativeto.net/software/recuva/
+
+## Backups
+
+TODO
+
 ## Virus and malware
 
 I usually install a scanner, do the scan, then remove it and leave Windows Defender, since the hardware of my circle of friends is usually very modest and slow, so antivirus usually make it crawl.
@@ -73,11 +101,27 @@ I usually install a scanner, do the scan, then remove it and leave Windows Defen
 * Spybot Free Edition - https://www.safer-networking.org/products/spybot-free-edition/
   * Has a cool "inmunization" feature. Use it.
 
-* ClamAV - open source - https://www.clamav.net/
-
 * Windows Defender - https://docs.microsoft.com/windows/security/threat-protection/windows-defender-antivirus/windows-defender-antivirus-in-windows-10
 
 I leave this after the full scan, inmunization, etc, removing all the others.
+
+### Other anti virus tools
+
+I almost never use these, but good to know them
+
+* Rogue Killer - https://www.adlice.com/roguekiller/
+
+* ADW Cleaer - https://www.malwarebytes.com/adwcleaner/
+
+* OS Armor - https://www.osarmor.com/
+
+* RKill - https://www.bleepingcomputer.com/download/rkill/
+
+* Panda Autorun Vaccine - https://www.pandasecurity.com/en/mediacenter/products/panda-usb-and-autorun-vaccine/
+
+* Hijack This - obsolete? I think there is a fork that still works
+
+* ClamAV - open source - https://www.clamav.net/
 
 ## Check disk health
 
@@ -89,7 +133,7 @@ etc - TODO
 
 * Ninite
 
-Within Chrome or Firefox: run **uBlock Origin** is a must. 
+Within Chrome or Firefox: run **uBlock Origin** is a must.
 
 # Hardware check
 
