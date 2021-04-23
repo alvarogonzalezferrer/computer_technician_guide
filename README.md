@@ -2,6 +2,10 @@
 
  A *computer technician guide* to repair your friends and family computer. You are "the" tech guy in the family, don't you?
 
+ One of the hallmarks of our age is the decline of the do-it-yourselfer in favor of the hire-an-expert-to-do-it-insteader. Toilet not flushing? Hire a plumber. Porch falling down? Hire a carpenter. Lights on the blink? Hire an electrician.
+
+ You could argue, as many people have done, that a return to a DIY ethos would be good for society and good for the soul. I like to DIY. Also, I'm a Computer Science graduate, so I get often called as "the" tech guy in family and circle of friends. 
+
 # NOTE
 
 This guide is in early alpha stage, nothing is ready yet.
