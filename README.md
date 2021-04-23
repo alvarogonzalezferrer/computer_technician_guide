@@ -80,7 +80,11 @@ Obsolete:
 
 ## Recover deleted data
 
-I try to avoid this task, please have BACKUPS! Educate your family and friends on the importance of having BACKUPS
+I try to avoid this task, please have **BACKUPS**!
+
+**Educate your family and friends on the importance of having BACKUPS**
+
+* Autopsy - http://www.sleuthkit.org/autopsy/index.php -- digital forensics platform
 
 * Recuva -- recover deleted files
 
