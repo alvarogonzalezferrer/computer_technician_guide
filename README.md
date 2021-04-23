@@ -89,6 +89,8 @@ etc - TODO
 
 * Ninite
 
+Within Chrome or Firefox: run **uBlock Origin** is a must. 
+
 # Hardware check
 
 Getting info about the hardware
