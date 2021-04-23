@@ -113,6 +113,8 @@ I leave this after the full scan, inmunization, etc, removing all the others.
 
 I almost never use these, but good to know them
 
+* MBAM - https://malwarebytes.com
+
 * Rogue Killer - https://www.adlice.com/roguekiller/
 
 * ADW Cleaer - https://www.malwarebytes.com/adwcleaner/
