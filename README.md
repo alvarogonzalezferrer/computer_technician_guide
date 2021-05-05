@@ -42,6 +42,8 @@ TODO - describe HOW
 
 ## Drivers
 
+* Snappy auto driver updater - installar: https://sdi-tool.org/
+
 # Software for Windows  
 
 ## Remote Desktop
@@ -135,9 +137,15 @@ I almost never use these, but good to know them
 
 etc - TODO
 
-## Install useful software for the user
+## Install / update user software
 
-* Ninite
+* Patch My PC - https://patchmypc.com/home-updater
+
+* Chocolatey - https://chocolatey.org/
+
+* Ninite - https://ninite.com/
+
+* Snappy - drivers - https://sdi-tool.org/
 
 Within Chrome or Firefox: run **uBlock Origin** is a must.
 
