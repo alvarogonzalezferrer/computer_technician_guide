@@ -53,6 +53,12 @@ or
 
 5. Install user software as needed. i.e with Ninite or Chocolatey
 
+## Classic start menu
+
+The Windows 10 start menu sucks, is slow, I prefer Open Shell
+
+* Classic style Start Menu for Windows 7, 8, 8.1, 10: https://open-shell.github.io/Open-Shell-Menu/
+
 ## Drivers
 
 * Snappy auto driver updater - installar: https://sdi-tool.org/
