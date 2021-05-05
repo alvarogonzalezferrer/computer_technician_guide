@@ -147,6 +147,8 @@ etc - TODO
 
 * Snappy - drivers - https://sdi-tool.org/
 
+* Just Install - https://github.com/just-install/just-install
+
 Within Chrome or Firefox: run **uBlock Origin** is a must.
 
 # Hardware check
