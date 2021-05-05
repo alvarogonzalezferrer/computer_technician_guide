@@ -169,6 +169,8 @@ Getting info about the hardware
 
 ## Linux
 
+* Linux Mint - https://linuxmint.com/
+
 ## DosBox
 
 ## Virtual Computers
