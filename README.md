@@ -192,3 +192,7 @@ Getting info about the hardware
 ## DosBox
 
 ## Virtual Computers
+
+* Virtual Box - https://www.virtualbox.org/
+
+* QEMU - https://www.qemu.org/
