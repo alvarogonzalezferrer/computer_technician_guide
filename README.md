@@ -36,15 +36,20 @@ TODO - please donate or use my refer codes
 
 For new computers or *recently formated*.
 
-1. Get Windows 10 : https://www.microsoft.com/en-us/software-download/windows10
+Install the operating system and software (see automated installers below, i.e Patch My Pc or Ninite).
 
-Install the operating system and software.
+1. Get Windows 10 :
+- https://www.microsoft.com/en-us/software-download/windows10
+or
+- https://tb.rg-adguard.net/public.php
 
-Activate Windows10
+2. Activate it. Purchase keys, or download and run MAS (Microsoft-Activation-Scripts) to activate.
 
-Disable telemetry, cortana, ms store, xbox bullshit, and all the crap that win10 has...
+- https://github.com/massgravel/Microsoft-Activation-Scripts
 
-TODO - describe HOW
+3. Disable telemetry, cortana, ms store, xbox bullshit, and all the crap that win10 has... i.e with Privatezilla
+
+4. Set it up to work fast, put classic start, disable all visual effects.
 
 ## Drivers
 
