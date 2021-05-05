@@ -36,7 +36,13 @@ TODO - please donate or use my refer codes
 
 For new computers or *recently formated*.
 
+1. Get Windows 10 : https://www.microsoft.com/en-us/software-download/windows10
+
 Install the operating system and software.
+
+Activate Windows10
+
+Disable telemetry, cortana, ms store, xbox bullshit, and all the crap that win10 has...
 
 TODO - describe HOW
 
@@ -64,7 +70,7 @@ Now you are into their computer... time to work, mostly automated so I don't los
 
 * Bleach Bit
 
-* Privatezilla
+* Privatezilla - disable windows telemetry and general spyware from micro$oft...
 
 * Lock Hunter - https://lockhunter.com/ -- To delete those files that can't be deleted.
 
@@ -75,7 +81,6 @@ Now you are into their computer... time to work, mostly automated so I don't los
 * Windirstat - https://windirstat.net/ --  disk usage statistics viewer and cleanup tool
 
 * Defraggler -- defrag disk , old school, I usually don't do it.
-
 
 Obsolete:
 * FSLint - https://www.pixelbeat.org/fslint/ -- find and clean various forms of lint on a filesystem , duplicate files, etc
