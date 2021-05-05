@@ -147,6 +147,10 @@ I almost never use these, but good to know them
 
 * chkdsk
 
+* https://hddscan.com/
+
+* https://crystalmark.info/en/software/crystaldiskinfo/
+
 etc - TODO
 
 ## Install / update user software
