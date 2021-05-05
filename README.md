@@ -51,6 +51,8 @@ or
 
 4. Set it up to work fast, put classic start, disable all visual effects.
 
+5. Install user software as needed. i.e with Ninite or Chocolatey
+
 ## Drivers
 
 * Snappy auto driver updater - installar: https://sdi-tool.org/
