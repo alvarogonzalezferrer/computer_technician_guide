@@ -116,7 +116,23 @@ https://alternativeto.net/software/recuva/
 
 ## Backups
 
-TODO
+Golden Rules for data backup:
+
+An easy-to-remember acronym for a common approach to keeping your data safe is 3-2-1 backup rule in almost any failure scenario. The rule is:
+
+1. Keeps at least three copies of your data
+
+2. Stores two backup copies on different storage media
+
+3. With one of them located offsite. i.e "the cloud"
+
+### Software for backups
+
+* 7-Zip -- Pretty good, not only for backup, replaces WinRar, Winzip, etc : https://www.7-zip.org/
+
+## Cloud Storage
+
+TODO - I prefer pCloud
 
 ## Virus and malware
 
@@ -175,7 +191,19 @@ etc - TODO
 
 Within Chrome or Firefox: run **uBlock Origin** is a must.
 
+## File manager
+
+* Total Commander - https://www.ghisler.com/
+
+* Far Manager - https://www.farmanager.com/
+
+* MultiCommander - http://multicommander.com/
+
+* Everything - file search local, way better than cortana: https://www.voidtools.com/en-us/
+
 # Hardware check
+
+* Who Crashed - https://www.resplendence.com/whocrashed - reveals the drivers responsible for crashing your computer
 
 Getting info about the hardware
 
