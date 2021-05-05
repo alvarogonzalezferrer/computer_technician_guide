@@ -83,7 +83,9 @@ Now you are into their computer... time to work, mostly automated so I don't los
 
 * Bleach Bit
 
-* Privatezilla - disable windows telemetry and general spyware from micro$oft...
+* Privatezilla - disable windows telemetry and general spyware from micro$oft... - https://www.builtbybel.com/ms-apps/privatezilla
+
+* DoNotSpy10 - disable Win10 telemetry and spyware - https://pxc-coding.com/donotspy10/
 
 * Lock Hunter - https://lockhunter.com/ -- To delete those files that can't be deleted.
 
