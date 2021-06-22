@@ -49,7 +49,7 @@ TODO - please donate or use my refer codes
 
 For new computers or *recently formated*.
 
-Install the operating system and software (see automated installers below, i.e Patch My Pc or Ninite).
+Install the operating system, drivers and software (see automated installers below, i.e Snappy, Patch My Pc or Ninite).
 
 1. Get Windows 10 :
 - https://www.microsoft.com/en-us/software-download/windows10
@@ -60,11 +60,13 @@ or
 
 - https://github.com/massgravel/Microsoft-Activation-Scripts
 
-3. Disable telemetry, cortana, ms store, xbox bullshit, and all the crap that win10 has... i.e with Privatezilla
+3. Install drivers, i.e with Snappy
 
-4. Set it up to work fast, put classic start, disable all visual effects.
+4. Disable telemetry, cortana, ms store, xbox bullshit, and all the crap that win10 has... i.e with Privatezilla
 
-5. Install user software as needed. i.e with Ninite or Chocolatey
+5. Set it up to work fast, put classic start, disable all visual effects.
+
+6. Install user software as needed. i.e with Ninite or Chocolatey
 
 ## Classic start menu
 
@@ -228,11 +230,19 @@ Getting info about the hardware
 
 ## Testing
 
+TO-DO
+
 ## Repairing
+
+TO-DO
 
 ## Replacing
 
+TO-DO
+
 ## Reusing
+
+TO-DO
 
 # Beyond Windows
 
@@ -241,6 +251,10 @@ Getting info about the hardware
 * Linux Mint - https://linuxmint.com/
 
 ## DosBox
+
+Retro fun, and games with no shitty loot boxes or milking you for money with DLCs... the golden age of computing...
+
+* https://www.dosbox.com/
 
 ## Virtual Computers
 
