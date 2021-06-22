@@ -6,9 +6,10 @@
 
  You could argue, as many people have done, that a return to a DIY ethos would be good for society and good for the soul. I like to DIY. Also, I'm a Computer Science graduate, so I get often called as "the" tech guy in family and circle of friends.
 
-# NOTE
 
-This guide is in early alpha stage, nothing is ready yet.
+## Version
+
+Revision v0.0.2a - 22 June 2021
 
 ## Motivation
 
@@ -27,6 +28,18 @@ I try to use open source software, avoid bloatware, crapware, and paid software 
 If you know a better way, please let me know, or better send a pull request and improve it!
 
 For now, *this is the way*...
+
+# Who am I?
+
+Hi, Im Alvaro, Software developer and Computer Science graduate from Argentina.
+
+Currently living at Costa Rica.
+
+Check my portfolio for more info:
+
+https://alvarogonzalezferrer.github.io/
+
+There you can see my portfolio, I'm a freelancer, mainly expert in C++, you can hire me for your projects!
 
 # Donate please
 
@@ -179,11 +192,13 @@ etc - TODO
 
 ## Install / update user software
 
+Install or update software in bulk. Save time and effort.
+
 * Patch My PC - https://patchmypc.com/home-updater
 
-* Chocolatey - https://chocolatey.org/
-
 * Ninite - https://ninite.com/
+
+* Chocolatey - https://chocolatey.org/
 
 * Snappy - drivers - https://sdi-tool.org/
 
