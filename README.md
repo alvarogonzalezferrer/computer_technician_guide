@@ -9,7 +9,7 @@
 
 ## Version
 
-Revision v0.0.2a - 22 June 2021
+Revision v0.0.3 - January 2022
 
 ## Motivation
 
@@ -46,6 +46,26 @@ There you can see my portfolio, I'm a freelancer, mainly expert in C++, you can 
 TODO - please donate or use my refer codes
 
 # For new computers
+
+# Linux
+
+Just get Linux Mint or Kubuntu if you have a new computer.  
+
+https://linuxmint.com/
+
+https://kubuntu.org/
+
+Lubuntu or Xubuntu if you have a old slow computer.
+
+https://lubuntu.me/
+
+https://xubuntu.org/
+
+These Linux distros come ready out of the box, saving you all the trouble of Windows (but you do have some compatibility issues).
+
+Enjoy
+
+# Windows
 
 For new computers or *recently formated*.
 
@@ -261,3 +281,9 @@ Retro fun, and games with no shitty loot boxes or milking you for money with DLC
 * Virtual Box - https://www.virtualbox.org/
 
 * QEMU - https://www.qemu.org/
+
+## Hackintosh
+
+Hackintosh.com links to everything you need to build a Hackintosh and get macOS Monterey (macOS 12) as well as many earlier versions of Mac OS X running on an unsupported computer
+
+* https://hackintosh.com/
