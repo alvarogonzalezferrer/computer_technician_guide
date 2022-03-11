@@ -9,7 +9,7 @@
 
 ## Version
 
-Revision v0.0.3 - January 2022
+Revision v0.0.4 - March 2022
 
 ## Motivation
 
@@ -263,6 +263,37 @@ TO-DO
 ## Reusing
 
 TO-DO
+
+# Some other useful tools 
+
+Some apps that are very useful 
+
+## Video editing 
+
+* Davinci Resolve - https://www.blackmagicdesign.com/products/davinciresolve/ 
+* Openshot
+* Pitivi
+* Cinelerra
+
+## Shortcuts 
+
+* Fatkeys - https://www.fastkeysautomation.com/
+
+## Screen capture and broadcast 
+
+* OBS - https://obsproject.com/es
+* ScreenPresso - https://www.screenpresso.com/
+
+## Graphics
+
+* Paint NET
+* GIMP
+* Inkscape 
+* Irfanview 
+* ASE Sprite Editor
+* Wings 3D
+* Blender
+
 
 # Beyond Windows
 
