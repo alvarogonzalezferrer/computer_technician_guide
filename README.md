@@ -281,7 +281,7 @@ Some apps that are very useful
 
 ## Screen capture and broadcast 
 
-* OBS - https://obsproject.com/es
+* OBS studio - https://obsproject.com/es
 * ScreenPresso - https://www.screenpresso.com/
 
 ## Graphics
