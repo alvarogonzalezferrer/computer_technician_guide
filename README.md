@@ -9,7 +9,7 @@
 
 ## Version
 
-Revision v0.0.4 - March 2022
+Revision v0.0.5 - March 2022
 
 ## Motivation
 
@@ -237,6 +237,10 @@ Within Chrome or Firefox: run **uBlock Origin** is a must.
 * MultiCommander - http://multicommander.com/
 
 * Everything - file search local, way better than cortana: https://www.voidtools.com/en-us/
+
+## Merge, compare files, directories, and version controlled projects.
+
+* Meld - https://meldmerge.org/
 
 # Hardware check
 
