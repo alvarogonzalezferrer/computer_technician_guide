@@ -92,7 +92,7 @@ or
 
 The Windows 10 start menu sucks, is slow, I prefer Open Shell
 
-* Classic style Start Menu for Windows 7, 8, 8.1, 10: https://open-shell.github.io/Open-Shell-Menu/
+* Classic style Start Menu for Windows 7, 8, 8.1, 10: https://github.com/Open-Shell/Open-Shell-Menu
 
 ## Drivers
 
@@ -103,6 +103,8 @@ The Windows 10 start menu sucks, is slow, I prefer Open Shell
 ## Remote Desktop
 
 Adding that they always call around 2 am to 4 am, the family member in trouble is usually at the other side of the globe, so a remote desktop software is a must.
+
+* RustDesk: https://rustdesk.com/ 
 
 * Any Desk
 
@@ -161,13 +163,33 @@ An easy-to-remember acronym for a common approach to keeping your data safe is 3
 
 3. With one of them located offsite. i.e "the cloud"
 
+### Disk cloning 
+
+* Clonezilla
+
+* Rescuezilla: https://rescuezilla.com/ 
+
 ### Software for backups
 
 * 7-Zip -- Pretty good, not only for backup, replaces WinRar, Winzip, etc : https://www.7-zip.org/
 
 ## Cloud Storage
 
-TODO - I prefer pCloud
+* pCloud
+
+* Dropbox
+
+* Google Drive
+
+* OneDrive
+
+* ???
+
+### Encrypt cloud storage
+
+* Cryptomator
+
+* Veracrypt
 
 ## Virus and malware
 
@@ -229,6 +251,8 @@ Install or update software in bulk. Save time and effort.
 Within Chrome or Firefox: run **uBlock Origin** is a must.
 
 ## File manager
+
+* Explorer++
 
 * Total Commander - https://www.ghisler.com/
 
@@ -298,6 +322,13 @@ Some apps that are very useful
 * Wings 3D
 * Blender
 
+## Editors for text and more
+
+* VS Code
+
+* Cudatext
+
+* Notepad++
 
 # Beyond Windows
 
