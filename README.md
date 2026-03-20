@@ -17,7 +17,7 @@ I'm a Computer Science graduate, so I get often called as "the" tech guy in fami
 
 ## 👤 Who am I?
 
-Hi, I'm Alvaro — Software Developer and Computer Science graduate from Argentina, currently living in Costa Rica.
+Hi, I'm Alvaro - Software Developer and Computer Science graduate from Argentina, currently living in Costa Rica.
 
 Check my portfolio: **[alvarogonzalezferrer.github.io](https://alvarogonzalezferrer.github.io/)**  
 I'm a freelancer, mainly expert in C++. You can hire me for your projects!
@@ -26,13 +26,13 @@ I'm a freelancer, mainly expert in C++. You can hire me for your projects!
 
 ## 📋 Index
 
-1. [For New Computers — Linux](#-for-new-computers--linux)
-2. [For New Computers — Windows](#-for-new-computers--windows)
-   - [Step 1 — Choose the right ISO](#step-1--choose-the-right-iso)
-   - [Step 2 — Prepare the bootable USB](#step-2--prepare-the-bootable-usb)
-   - [Step 3 — Clean GPU drivers](#step-3--clean-gpu-drivers)
-   - [Step 4 — Install Windows](#step-4--install-windows)
-   - [Step 5 — Optimize the system](#step-5--optimize-the-system)
+1. [For New Computers - Linux](#-for-new-computers--linux)
+2. [For New Computers - Windows](#-for-new-computers--windows)
+   - [Step 1 - Choose the right ISO](#step-1--choose-the-right-iso)
+   - [Step 2 - Prepare the bootable USB](#step-2--prepare-the-bootable-usb)
+   - [Step 3 - Clean GPU drivers](#step-3--clean-gpu-drivers)
+   - [Step 4 - Install Windows](#step-4--install-windows)
+   - [Step 5 - Optimize the system](#step-5--optimize-the-system)
 3. [Remote Desktop](#-remote-desktop)
 4. [Cleanup & Debloat](#-cleanup--debloat)
 5. [Recover Deleted Data](#-recover-deleted-data)
@@ -45,11 +45,11 @@ I'm a freelancer, mainly expert in C++. You can hire me for your projects!
 12. [Graphics & Media](#-graphics--media)
 13. [Text Editors](#-text-editors)
 14. [Beyond Windows](#-beyond-windows)
-15. [Quick Reference — All Tools](#-quick-reference--all-tools)
+15. [Quick Reference - All Tools](#-quick-reference--all-tools)
 
 ---
 
-## 🐧 For New Computers — Linux
+## 🐧 For New Computers - Linux
 
 If you want to avoid Windows headaches entirely:
 
@@ -60,11 +60,11 @@ If you want to avoid Windows headaches entirely:
 | **Lubuntu** | Old/slow computers | [lubuntu.me](https://lubuntu.me/) |
 | **Xubuntu** | Old/slow computers, XFCE desktop | [xubuntu.org](https://xubuntu.org/) |
 
-These come ready out of the box, saving you all the Windows trouble — though you do have some software compatibility trade-offs.
+These come ready out of the box, saving you all the Windows trouble - though you do have some software compatibility trade-offs.
 
 ---
 
-## 🪟 For New Computers — Windows
+## 🪟 For New Computers - Windows
 
 > **Real-world result:** With Chrome (3 windows, 2 tabs each) + Discord + Slack + Spotify + Adobe CC open simultaneously → **107 processes · 18% RAM usage** on a Ryzen 7 5700X3D.  
 > A default Windows install would have nearly **triple** the processes.
@@ -73,9 +73,9 @@ If someone is charging you to "remove lag and optimize your PC to the max", this
 
 ---
 
-### Step 1 — Choose the right ISO
+### Step 1 - Choose the right ISO
 
-Download a **clean ISO** directly. Don't modify or debloat the ISO itself — it's a waste of time and resources.
+Download a **clean ISO** directly. Don't modify or debloat the ISO itself - it's a waste of time and resources.
 
 | Version | Description | Best for |
 |---|---|---|
@@ -89,11 +89,11 @@ Download a **clean ISO** directly. Don't modify or debloat the ISO itself — it
 > [!NOTE]
 > For activation, download and run **[MAS (Microsoft Activation Scripts)](https://github.com/massgravel/Microsoft-Activation-Scripts)**.
 
-📥 Download clean ISOs from **[massgrave.dev](https://massgrave.dev)** — has all clean versions available.
+📥 Download clean ISOs from **[massgrave.dev](https://massgrave.dev)** - has all clean versions available.
 
 ---
 
-### Step 2 — Prepare the bootable USB
+### Step 2 - Prepare the bootable USB
 
 Use **[Rufus](https://rufus.ie)** to write the ISO to your USB drive.
 
@@ -106,17 +106,17 @@ If installing **Windows 11**, Rufus offers critical bypass options. Check all of
 - [x] Disable automatic BitLocker device encryption
 
 > [!TIP]
-> These options prevent BitLocker from silently encrypting your drive and Windows from forcing an online account — both cause headaches later.
+> These options prevent BitLocker from silently encrypting your drive and Windows from forcing an online account - both cause headaches later.
 
 ---
 
-### Step 3 — Clean GPU drivers
+### Step 3 - Clean GPU drivers
 
 **Before installing Windows**, prepare a slim driver package on the same USB. Generic drivers Windows installs on first boot can cause conflicts.
 
-#### 🟢 Nvidia GPU — NVCleanstall
+#### 🟢 Nvidia GPU - NVCleanstall
 
-1. Download **[NVCleanstall](https://www.techpowerup.com/nvcleanstall/)** — auto-detects the best driver for your GPU.
+1. Download **[NVCleanstall](https://www.techpowerup.com/nvcleanstall/)** - auto-detects the best driver for your GPU.
 2. In **components to install**, select only what's needed:
    - [x] Display Driver *(required)*
    - [x] Legacy Control Panel
@@ -130,20 +130,20 @@ If installing **Windows 11**, Rufus offers critical bypass options. Check all of
    - [ ] Enable DLSS Indicator
 4. Click **Build Package** → generates an `.exe` to copy to your USB.
 
-#### 🔴 AMD GPU — Radeon Software Slimmer
+#### 🔴 AMD GPU - Radeon Software Slimmer
 
 1. Download the **WHQL** driver from [AMD's official site](https://www.amd.com/en/support/download/drivers.html).
 2. Download **[Radeon Software Slimmer](https://github.com/GSDragoon/RadeonSoftwareSlimmer)** from GitHub.
 3. Open Slimmer, load the driver `.exe`.
 
-**`Packages` tab** — uncheck everything except:
+**`Packages` tab** - uncheck everything except:
 - [x] Microsoft Visual C++ 2022 Redistributable 64 bit
 
 Uncheck all HDMI audio packages if you don't need audio through monitor/TV.
 
-**`Scheduled Tasks` tab** — disable all auto-update tasks (AMDInstallLauncher, AMD COMPUTE, AMD Link Driver, etc.).
+**`Scheduled Tasks` tab** - disable all auto-update tasks (AMDInstallLauncher, AMD COMPUTE, AMD Link Driver, etc.).
 
-**`Display Driver Components` tab** — keep only:
+**`Display Driver Components` tab** - keep only:
 - [x] AMD Crash Defender (`amdfendr.inf`)
 - [x] AMD-Windows Support Components (`amdwin-u0198634.inf`)
 
@@ -151,11 +151,11 @@ Uncheck all HDMI audio packages if you don't need audio through monitor/TV.
 
 ---
 
-### Step 4 — Install Windows
+### Step 4 - Install Windows
 
 1. Boot from the USB and follow the normal installation process.
-2. **When Windows is about to start for the first time** — disconnect Ethernet or disable WiFi. Don't let generic drivers or updates install yet.
-3. **Windows 10 only** — when it asks for a Microsoft account, press `Shift + F10` and run:
+2. **When Windows is about to start for the first time** - disconnect Ethernet or disable WiFi. Don't let generic drivers or updates install yet.
+3. **Windows 10 only** - when it asks for a Microsoft account, press `Shift + F10` and run:
 
 ```
 OOBE\BYPASSNRO
@@ -168,9 +168,9 @@ The PC reboots. Continue normally and create a local account.
 
 ---
 
-### Step 5 — Optimize the system
+### Step 5 - Optimize the system
 
-Three approaches — pick one or combine them:
+Three approaches - pick one or combine them:
 
 | Option | Method | Aggressiveness | Best for |
 |---|---|---|---|
@@ -180,9 +180,9 @@ Three approaches — pick one or combine them:
 
 ---
 
-#### Option A — Playbooks (AtlasOS / ReviOS)
+#### Option A - Playbooks (AtlasOS / ReviOS)
 
-Playbooks deeply modify Windows via scripts, registry edits, and service injection — leaving only what's essential.
+Playbooks deeply modify Windows via scripts, registry edits, and service injection - leaving only what's essential.
 
 | | **AtlasOS** | **ReviOS** |
 |---|---|---|
@@ -200,7 +200,7 @@ Playbooks deeply modify Windows via scripts, registry edits, and service injecti
 
 ---
 
-#### Option B — ChrisTitus Script
+#### Option B - ChrisTitus Script
 
 Open **PowerShell as Administrator** and run:
 
@@ -233,7 +233,7 @@ In the **Tweaks** tab, enable the following:
 - [x] Remove Microsoft Edge
 - [x] Remove OneDrive
 - [x] Remove Xbox & Gaming Components
-- [ ] Remove ALL MS Store Apps — ⛔ Not recommended
+- [ ] Remove ALL MS Store Apps - ⛔ Not recommended
 
 **🔧 Customize Preferences** *(recommended)*
 
@@ -242,7 +242,7 @@ In the **Tweaks** tab, enable the following:
 - [x] Modern Standby Fix
 - [x] Show File Extensions
 
-**🏎️ Performance Plans — don't skip:**
+**🏎️ Performance Plans - don't skip:**
 
 ```
 → Add and Activate Ultimate Performance Profile
@@ -255,7 +255,7 @@ Reboot when done. ✅
 
 ---
 
-#### Bonus — Overclock & Undervolt
+#### Bonus - Overclock & Undervolt
 
 | Technique | What it does | Result |
 |---|---|---|
@@ -263,7 +263,7 @@ Reboot when done. ✅
 | **Undervolt** | Reduces voltage while maintaining performance | Less heat, less power draw, more stability |
 
 > [!NOTE]
-> These are **one-on-one** because every component varies. There's no universal recipe — you need to measure and adjust per your specific CPU/GPU.
+> These are **one-on-one** because every component varies. There's no universal recipe - you need to measure and adjust per your specific CPU/GPU.
 
 ---
 
@@ -294,7 +294,7 @@ I usually have a script pack ready. Download, run, done.
 | **Czkawka** | [github.com/qarmin/czkawka](https://github.com/qarmin/czkawka) | Remove unnecessary & duplicate files |
 | **dupeGuru** | [dupeguru.voltaicideas.net](https://dupeguru.voltaicideas.net/) | Find duplicate files |
 | **WinDirStat** | [windirstat.net](https://windirstat.net/) | Disk usage visualizer & cleanup |
-| **Defraggler** | [ccleaner.com/defraggler](https://www.ccleaner.com/defraggler/) | Disk defrag *(HDDs only — never defrag an SSD)* |
+| **Defraggler** | [ccleaner.com/defraggler](https://www.ccleaner.com/defraggler/) | Disk defrag *(HDDs only - never defrag an SSD)* |
 | **Open-Shell** | [github.com/Open-Shell/Open-Shell-Menu](https://github.com/Open-Shell/Open-Shell-Menu) | Classic Start menu replacement for Win 10/11 |
 
 ---
@@ -334,7 +334,7 @@ An easy acronym that covers almost any failure scenario:
 
 | Tool | Link | Notes |
 |---|---|---|
-| **7-Zip** | [7-zip.org](https://www.7-zip.org/) | Compression & archiving — replaces WinRAR/WinZip |
+| **7-Zip** | [7-zip.org](https://www.7-zip.org/) | Compression & archiving - replaces WinRAR/WinZip |
 | **Duplicati** | [duplicati.com](https://www.duplicati.com/) | Free encrypted cloud backups |
 | **FreeFileSync** | [freefilesync.org](https://freefilesync.org/) | Open-source file sync & backup |
 
@@ -366,7 +366,7 @@ My approach: run a full scan + immunization, then remove the scanner and leave o
 |---|---|---|
 | **Windows Defender** | Built-in | Leave this as the permanent AV |
 | **Avira Free** | [avira.com](https://www.avira.com/en/free-antivirus-windows) | Good free scanner |
-| **Spybot Free** | [safer-networking.org](https://www.safer-networking.org/products/spybot-free-edition/) | Has a great "immunization" feature — use it |
+| **Spybot Free** | [safer-networking.org](https://www.safer-networking.org/products/spybot-free-edition/) | Has a great "immunization" feature - use it |
 | **Malwarebytes (MBAM)** | [malwarebytes.com](https://www.malwarebytes.com) | Great secondary scanner |
 | **ClamAV** | [clamav.net](https://www.clamav.net/) | Open source |
 
@@ -381,7 +381,7 @@ My approach: run a full scan + immunization, then remove the scanner and leave o
 | **OSArmor** | [osarmor.com](https://www.osarmor.com/) |
 
 > [!TIP]
-> In Chrome or Firefox, always install **[uBlock Origin](https://ublockorigin.com/)** — it's a must.
+> In Chrome or Firefox, always install **[uBlock Origin](https://ublockorigin.com/)** - it's a must.
 
 ---
 
@@ -397,7 +397,7 @@ My approach: run a full scan + immunization, then remove the scanner and leave o
 
 ## 📦 Install / Update Software in Bulk
 
-Save time — install and update everything at once.
+Save time - install and update everything at once.
 
 | Tool | Link | Notes |
 |---|---|---|
@@ -414,7 +414,7 @@ Save time — install and update everything at once.
 
 | Tool | Link | Notes |
 |---|---|---|
-| **Everything** | [voidtools.com](https://www.voidtools.com/en-us/) | Instant file search — far better than Windows Search |
+| **Everything** | [voidtools.com](https://www.voidtools.com/en-us/) | Instant file search - far better than Windows Search |
 | **Explorer++** | [explorerplusplus.com](https://explorerplusplus.com/) | Tabbed Windows Explorer replacement |
 | **Total Commander** | [ghisler.com](https://www.ghisler.com/) | Dual-pane, very powerful |
 | **Far Manager** | [farmanager.com](https://www.farmanager.com/) | Console-style dual-pane |
@@ -506,15 +506,15 @@ Save time — install and update everything at once.
 
 ### Retro & DOS
 
-**DOSBox** — [dosbox.com](https://www.dosbox.com/) — Retro fun and games without loot boxes or DLCs. The golden age of computing.
+**DOSBox** - [dosbox.com](https://www.dosbox.com/) - Retro fun and games without loot boxes or DLCs. The golden age of computing.
 
 ### Hackintosh
 
-**Hackintosh.com** — [hackintosh.com](https://hackintosh.com/) — Everything you need to run macOS on unsupported hardware.
+**Hackintosh.com** - [hackintosh.com](https://hackintosh.com/) - Everything you need to run macOS on unsupported hardware.
 
 ---
 
-## 📚 Quick Reference — All Tools
+## 📚 Quick Reference - All Tools
 
 | Tool | Link |
 |---|---|
@@ -546,7 +546,7 @@ Save time — install and update everything at once.
 
 ## 📌 Version
 
-`v0.1.0` — March 2026 — Merged PC optimization guide + repaired and completed all links
+`v0.1.0` - March 2026 - Merged PC optimization guide + repaired and completed all links
 
 ---
 
@@ -555,7 +555,7 @@ Save time — install and update everything at once.
 *This list is NOT exhaustive, nor does it contain "the TRUE word of GOD himself."*  
 *It's just what* works for me™
 
-If you know a better way — send a pull request and improve it!
+If you know a better way - send a pull request and improve it!
 
 **For now, this is the way.**
 
