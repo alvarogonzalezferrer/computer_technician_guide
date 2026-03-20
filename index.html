@@ -1,0 +1,1742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TECH.GUIDE // Computer Technician Manual v0.1.0</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=VT323&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   VARIABLES & RESET
+   ============================================================ */
+:root {
+  --bg:        #070b0d;
+  --surface:   #0c1114;
+  --card:      #101518;
+  --card2:     #131a1e;
+  --border:    #1c2d32;
+  --border2:   #243840;
+
+  --text:      #96bab2;
+  --text-dim:  #5a7870;
+  --text-hi:   #c4ddd6;
+
+  --cyan:      #3ea8b2;
+  --cyan-dim:  #1e5860;
+  --amber:     #c0903a;
+  --amber-dim: #6a4e1a;
+  --green:     #48986a;
+  --green-dim: #1e4830;
+  --red:       #a04848;
+  --red-dim:   #501818;
+
+  --glow-c:    rgba(62,168,178,0.18);
+  --glow-a:    rgba(192,144,58,0.18);
+
+  --font-display: 'VT323', 'Courier New', monospace;
+  --font-mono:    'Share Tech Mono', 'Courier New', monospace;
+
+  --sidebar-w: 240px;
+  --radius: 3px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 14px;
+  line-height: 1.75;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* CRT scanlines overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0px,
+    transparent 3px,
+    rgba(0,0,0,0.07) 3px,
+    rgba(0,0,0,0.07) 4px
+  );
+  pointer-events: none;
+  z-index: 9998;
+}
+
+/* Vignette */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,0.55) 100%);
+  pointer-events: none;
+  z-index: 9997;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--surface); }
+::-webkit-scrollbar-thumb { background: var(--cyan-dim); border-radius: 0; }
+
+a { color: var(--cyan); text-decoration: none; border-bottom: 1px solid var(--cyan-dim); transition: color .15s, border-color .15s; }
+a:hover { color: var(--text-hi); border-color: var(--cyan); }
+
+/* ============================================================
+   LAYOUT
+   ============================================================ */
+.layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ============================================================
+   SIDEBAR
+   ============================================================ */
+.sidebar {
+  width: var(--sidebar-w);
+  flex-shrink: 0;
+  position: fixed;
+  top: 0; left: 0; bottom: 0;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  z-index: 100;
+}
+
+.sidebar-logo {
+  padding: 20px 16px 14px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.sidebar-logo .logo-tag {
+  font-family: var(--font-display);
+  font-size: 22px;
+  color: var(--cyan);
+  text-shadow: 0 0 12px var(--glow-c);
+  letter-spacing: 2px;
+  display: block;
+  border: none;
+}
+
+.sidebar-logo .logo-sub {
+  font-size: 10px;
+  color: var(--text-dim);
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+.sidebar-status {
+  padding: 8px 16px;
+  font-size: 10px;
+  color: var(--green);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.dot-blink {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 6px var(--green);
+  animation: blink 1.4s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%,100% { opacity: 1; }
+  50% { opacity: .2; }
+}
+
+.sidebar nav { padding: 8px 0; flex: 1; }
+
+.nav-section {
+  padding: 10px 16px 4px;
+  font-size: 9px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.sidebar nav a {
+  display: block;
+  padding: 5px 16px 5px 22px;
+  font-size: 12px;
+  color: var(--text-dim);
+  border: none;
+  border-left: 2px solid transparent;
+  transition: all .15s;
+  position: relative;
+}
+
+.sidebar nav a::before {
+  content: '> ';
+  position: absolute;
+  left: 10px;
+  color: var(--cyan-dim);
+}
+
+.sidebar nav a:hover {
+  color: var(--cyan);
+  border-left-color: var(--cyan);
+  background: rgba(62,168,178,0.06);
+}
+
+.sidebar-footer {
+  padding: 12px 16px;
+  border-top: 1px solid var(--border);
+  font-size: 10px;
+  color: var(--text-dim);
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   MAIN CONTENT
+   ============================================================ */
+.main {
+  margin-left: var(--sidebar-w);
+  flex: 1;
+  min-width: 0;
+  padding: 0 40px 80px;
+  max-width: 900px;
+}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+.site-header {
+  padding: 48px 0 40px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 48px;
+  position: relative;
+}
+
+.header-prefix {
+  font-size: 11px;
+  letter-spacing: .2em;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.header-prefix span {
+  color: var(--amber);
+}
+
+.site-title {
+  font-family: var(--font-display);
+  font-size: clamp(42px, 6vw, 72px);
+  color: var(--text-hi);
+  text-shadow: 0 0 30px rgba(196,221,214,0.15);
+  line-height: 1;
+  letter-spacing: 4px;
+  margin-bottom: 4px;
+}
+
+.site-title .accent { color: var(--cyan); text-shadow: 0 0 20px var(--glow-c); }
+
+.site-subtitle {
+  font-family: var(--font-display);
+  font-size: 20px;
+  color: var(--amber);
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+}
+
+.site-desc {
+  font-size: 13px;
+  color: var(--text);
+  max-width: 560px;
+  border-left: 2px solid var(--cyan-dim);
+  padding-left: 14px;
+  margin-top: 16px;
+}
+
+.header-meta {
+  display: flex;
+  gap: 24px;
+  margin-top: 20px;
+  font-size: 11px;
+  color: var(--text-dim);
+}
+
+.header-meta span { color: var(--amber); }
+
+/* Blinking cursor */
+.cursor::after {
+  content: '█';
+  color: var(--cyan);
+  animation: blink 1s step-end infinite;
+}
+
+/* Result callout */
+.result-callout {
+  background: var(--card);
+  border: 1px solid var(--border2);
+  border-left: 3px solid var(--green);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  margin: 24px 0 32px;
+  font-size: 13px;
+}
+
+.result-callout .label {
+  font-size: 10px;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 6px;
+}
+
+.result-callout strong { color: var(--text-hi); }
+
+/* ============================================================
+   SECTIONS
+   ============================================================ */
+section {
+  margin-bottom: 56px;
+  animation: fadeIn .4s ease both;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.section-tag {
+  font-size: 10px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 4px;
+}
+
+h2 {
+  font-family: var(--font-display);
+  font-size: 28px;
+  color: var(--text-hi);
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+h2 .h2-num {
+  font-size: 12px;
+  color: var(--cyan);
+  background: rgba(62,168,178,0.1);
+  border: 1px solid var(--cyan-dim);
+  padding: 1px 8px;
+  letter-spacing: .1em;
+  font-family: var(--font-mono);
+}
+
+h3 {
+  font-family: var(--font-display);
+  font-size: 20px;
+  color: var(--cyan);
+  letter-spacing: 1px;
+  margin: 28px 0 14px;
+}
+
+h4 {
+  font-size: 13px;
+  color: var(--amber);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  margin: 20px 0 10px;
+}
+
+p { margin-bottom: 14px; font-size: 13.5px; }
+
+/* ============================================================
+   TERMINAL WINDOW CARDS
+   ============================================================ */
+.term-window {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin: 16px 0;
+  overflow: hidden;
+}
+
+.term-bar {
+  background: var(--card2);
+  border-bottom: 1px solid var(--border);
+  padding: 7px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  color: var(--text-dim);
+  letter-spacing: .1em;
+}
+
+.term-bar::before {
+  content: '';
+  display: inline-block;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--red-dim);
+  box-shadow: 16px 0 0 var(--amber-dim), 32px 0 0 var(--green-dim);
+}
+
+.term-bar .filename { margin-left: 28px; }
+
+.term-body { padding: 16px 20px; }
+
+/* ============================================================
+   TABLES
+   ============================================================ */
+.tbl-wrap { overflow-x: auto; margin: 16px 0; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+thead tr {
+  background: var(--card2);
+  border-bottom: 1px solid var(--border2);
+}
+
+th {
+  text-align: left;
+  padding: 9px 14px;
+  font-size: 10px;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  font-weight: normal;
+}
+
+td {
+  padding: 9px 14px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+  vertical-align: top;
+}
+
+tr:last-child td { border-bottom: none; }
+
+tr:hover td { background: rgba(62,168,178,0.04); }
+
+td a { font-size: 12px; }
+
+td strong { color: var(--text-hi); font-weight: normal; }
+
+.badge {
+  display: inline-block;
+  font-size: 9px;
+  padding: 1px 6px;
+  border-radius: 2px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  vertical-align: middle;
+  margin-left: 4px;
+}
+
+.badge-c { background: rgba(62,168,178,0.15); color: var(--cyan); border: 1px solid var(--cyan-dim); }
+.badge-a { background: rgba(192,144,58,0.15); color: var(--amber); border: 1px solid var(--amber-dim); }
+.badge-g { background: rgba(72,152,106,0.15); color: var(--green); border: 1px solid var(--green-dim); }
+.badge-r { background: rgba(160,72,72,0.15); color: var(--red); border: 1px solid var(--red-dim); }
+
+/* ============================================================
+   STEPS
+   ============================================================ */
+.steps { margin: 14px 0; }
+
+.step {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 14px;
+  align-items: flex-start;
+}
+
+.step-n {
+  font-family: var(--font-display);
+  font-size: 18px;
+  color: var(--cyan);
+  background: rgba(62,168,178,0.08);
+  border: 1px solid var(--cyan-dim);
+  min-width: 32px; height: 32px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.step p { margin: 0; font-size: 13.5px; }
+
+/* ============================================================
+   CHECKLISTS
+   ============================================================ */
+.checklist {
+  list-style: none;
+  margin: 12px 0;
+}
+
+.checklist li {
+  padding: 5px 0 5px 26px;
+  position: relative;
+  font-size: 13px;
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+}
+
+.checklist li:last-child { border-bottom: none; }
+
+.checklist li::before {
+  content: '[✓]';
+  position: absolute;
+  left: 0;
+  color: var(--green);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  top: 6px;
+}
+
+.checklist li.off::before {
+  content: '[ ]';
+  color: var(--text-dim);
+}
+
+.checklist li.warn::before {
+  content: '[!]';
+  color: var(--amber);
+}
+
+/* ============================================================
+   CODE BLOCKS
+   ============================================================ */
+.code-block {
+  background: #040608;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--green);
+  padding: 14px 18px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--green);
+  text-shadow: 0 0 8px rgba(72,152,106,0.4);
+  margin: 14px 0;
+  overflow-x: auto;
+  position: relative;
+}
+
+.code-block::before {
+  content: '$ ';
+  color: var(--text-dim);
+}
+
+.code-block.no-prompt::before { content: ''; }
+
+/* ============================================================
+   ALERTS / CALLOUTS
+   ============================================================ */
+.alert {
+  border-radius: var(--radius);
+  padding: 12px 16px;
+  margin: 14px 0;
+  display: flex;
+  gap: 12px;
+  font-size: 13px;
+  border: 1px solid;
+}
+
+.alert-icon { flex-shrink: 0; font-size: 14px; margin-top: 1px; }
+.alert p { margin: 0; }
+.alert strong { color: var(--text-hi); }
+
+.alert-tip    { background: rgba(72,152,106,0.07);  border-color: var(--green-dim);  }
+.alert-warn   { background: rgba(192,144,58,0.07);  border-color: var(--amber-dim);  }
+.alert-info   { background: rgba(62,168,178,0.07);  border-color: var(--cyan-dim);   }
+.alert-danger { background: rgba(160,72,72,0.07);   border-color: var(--red-dim);    }
+
+.alert-tip .alert-icon    { color: var(--green); }
+.alert-warn .alert-icon   { color: var(--amber); }
+.alert-info .alert-icon   { color: var(--cyan);  }
+.alert-danger .alert-icon { color: var(--red);   }
+
+/* ============================================================
+   OPTION SELECTOR DISPLAY
+   ============================================================ */
+.options-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 16px 0;
+}
+
+.option-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  position: relative;
+  overflow: hidden;
+}
+
+.option-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+}
+
+.option-card.opt-a::before { background: var(--red); }
+.option-card.opt-b::before { background: var(--amber); }
+.option-card.opt-c::before { background: var(--cyan); }
+
+.option-card .opt-label {
+  font-family: var(--font-display);
+  font-size: 28px;
+  color: var(--text-dim);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.option-card.opt-a .opt-label { color: var(--red); }
+.option-card.opt-b .opt-label { color: var(--amber); }
+.option-card.opt-c .opt-label { color: var(--cyan); }
+
+.option-card .opt-name {
+  font-size: 12px;
+  color: var(--text-hi);
+  margin-bottom: 4px;
+}
+
+.option-card .opt-desc {
+  font-size: 11px;
+  color: var(--text-dim);
+}
+
+/* ============================================================
+   TWO-COLUMN GRID
+   ============================================================ */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 16px 0;
+}
+
+.col-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  position: relative;
+}
+
+.col-card .col-title {
+  font-family: var(--font-display);
+  font-size: 18px;
+  color: var(--text-hi);
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+  letter-spacing: 1px;
+}
+
+/* ============================================================
+   BACK-TO-TOP / DIVIDER
+   ============================================================ */
+.section-divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 40px 0;
+  position: relative;
+}
+
+.section-divider::after {
+  content: '// SECTION END //';
+  position: absolute;
+  top: -8px; right: 0;
+  font-size: 9px;
+  letter-spacing: .15em;
+  color: var(--text-dim);
+  background: var(--bg);
+  padding: 0 8px;
+}
+
+/* ============================================================
+   QUICK REF TABLE
+   ============================================================ */
+.quick-ref-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  margin: 16px 0;
+}
+
+.qr-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 12px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  font-size: 12px;
+  transition: background .15s;
+}
+
+.qr-item:hover { background: var(--card2); }
+
+.qr-item .qr-name { color: var(--text-hi); min-width: 160px; flex-shrink: 0; }
+.qr-item .qr-sep { color: var(--text-dim); }
+.qr-item a { font-size: 11px; }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer {
+  margin-top: 64px;
+  padding: 24px 0;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  font-size: 11px;
+  color: var(--text-dim);
+}
+
+footer .footer-ascii {
+  font-family: var(--font-display);
+  font-size: 14px;
+  color: var(--cyan-dim);
+  letter-spacing: 3px;
+  margin-bottom: 10px;
+}
+
+footer strong { color: var(--amber); }
+footer em { color: var(--text); font-style: normal; }
+
+/* ============================================================
+   MOBILE NAV TOGGLE
+   ============================================================ */
+.mob-toggle {
+  display: none;
+  position: fixed;
+  top: 12px; left: 12px;
+  z-index: 200;
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  color: var(--cyan);
+  font-family: var(--font-display);
+  font-size: 18px;
+  padding: 4px 12px;
+  cursor: pointer;
+  letter-spacing: 1px;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 800px) {
+  .sidebar {
+    transform: translateX(-100%);
+    transition: transform .25s ease;
+  }
+
+  .sidebar.open { transform: translateX(0); }
+
+  .main {
+    margin-left: 0;
+    padding: 60px 20px 60px;
+  }
+
+  .mob-toggle { display: block; }
+
+  .two-col, .options-grid, .quick-ref-grid { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   BOOT ANIMATION
+   ============================================================ */
+.boot-line {
+  color: var(--green);
+  font-size: 11px;
+  opacity: 0;
+  animation: bootIn .3s ease forwards;
+}
+
+.boot-line:nth-child(1) { animation-delay: .0s; }
+.boot-line:nth-child(2) { animation-delay: .1s; }
+.boot-line:nth-child(3) { animation-delay: .2s; }
+.boot-line:nth-child(4) { animation-delay: .3s; }
+.boot-line:nth-child(5) { animation-delay: .4s; }
+
+@keyframes bootIn {
+  from { opacity: 0; transform: translateX(-4px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* highlight */
+mark {
+  background: rgba(192,144,58,0.2);
+  color: var(--amber);
+  padding: 0 3px;
+}
+
+/* inline code */
+code {
+  font-family: var(--font-mono);
+  background: var(--card2);
+  border: 1px solid var(--border);
+  padding: 1px 6px;
+  font-size: 12px;
+  color: var(--cyan);
+  border-radius: 2px;
+}
+</style>
+</head>
+<body>
+
+<!-- MOBILE TOGGLE -->
+<button class="mob-toggle" onclick="document.querySelector('.sidebar').classList.toggle('open')" aria-label="Toggle menu">≡ MENU</button>
+
+<div class="layout">
+
+<!-- ====================================================
+     SIDEBAR
+     ==================================================== -->
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <a class="logo-tag" href="#top" style="border:none;">TECH.GUIDE</a>
+    <div class="logo-sub">Computer Technician Manual</div>
+  </div>
+
+  <div class="sidebar-status">
+    <div class="dot-blink"></div>
+    SYSTEM ONLINE // v0.1.0
+  </div>
+
+  <nav>
+    <div class="nav-section">// SETUP</div>
+    <a href="#linux">Linux Options</a>
+    <a href="#iso">Windows ISO</a>
+    <a href="#usb">Bootable USB</a>
+    <a href="#drivers">GPU Drivers</a>
+    <a href="#install">Installation</a>
+    <a href="#optimize">Optimization</a>
+
+    <div class="nav-section">// REPAIR</div>
+    <a href="#remote">Remote Desktop</a>
+    <a href="#cleanup">Cleanup & Debloat</a>
+    <a href="#recovery">Data Recovery</a>
+    <a href="#backups">Backups</a>
+    <a href="#malware">Virus & Malware</a>
+    <a href="#disk">Disk Health</a>
+
+    <div class="nav-section">// SOFTWARE</div>
+    <a href="#bulk">Bulk Installers</a>
+    <a href="#files">File Managers</a>
+    <a href="#hardware">Hardware Diag.</a>
+    <a href="#media">Graphics & Media</a>
+    <a href="#editors">Text Editors</a>
+
+    <div class="nav-section">// EXTRAS</div>
+    <a href="#beyond">Beyond Windows</a>
+    <a href="#quickref">Quick Reference</a>
+  </nav>
+
+  <div class="sidebar-footer">
+    by <strong style="color:var(--amber)">Alvaro G.F.</strong><br>
+    <a href="https://alvarogonzalezferrer.github.io/" style="font-size:10px;">portfolio →</a>
+  </div>
+</aside>
+
+<!-- ====================================================
+     MAIN
+     ==================================================== -->
+<main class="main" id="top">
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="term-window" style="margin-bottom:20px;">
+      <div class="term-bar"><span class="filename">boot.log</span></div>
+      <div class="term-body" style="padding:10px 16px;">
+        <div class="boot-line">BIOS v2.08 · CPU OK · RAM OK · STORAGE OK</div>
+        <div class="boot-line">Loading TECH.GUIDE kernel modules...</div>
+        <div class="boot-line">Mounting knowledge base... [OK]</div>
+        <div class="boot-line">Initializing anti-bloat subsystem... [OK]</div>
+        <div class="boot-line">Ready. <span style="color:var(--cyan)">Press any key to continue █</span></div>
+      </div>
+    </div>
+
+    <div class="header-prefix">// <span>COMPUTER TECHNICIAN GUIDE</span> // FREE & OPEN SOURCE //</div>
+    <div class="site-title"><span class="accent">TECH</span>.GUIDE<span class="cursor"></span></div>
+    <div class="site-subtitle">REPAIR · OPTIMIZE · MAINTAIN</div>
+
+    <p class="site-desc">
+      A practical manual to fix, clean, and tune computers — for the person who always gets the 3am call. No paid software. No technician fees. Just what works.
+    </p>
+
+    <div class="header-meta">
+      <span>VERSION <span>0.1.0</span></span>
+      <span>MARCH <span>2026</span></span>
+      <span>AUTHOR: <span>ALVARO G.F.</span></span>
+      <span>LICENSE: <span>OPEN</span></span>
+    </div>
+
+    <div class="result-callout">
+      <div class="label">// REAL WORLD BENCHMARK</div>
+      <p>Chrome (3 windows × 2 tabs) + Discord + Slack + Spotify + Adobe CC running simultaneously → <strong>107 processes · 18% RAM</strong> on a Ryzen 7 5700X3D. A stock Windows install would run <strong>nearly triple</strong> the processes with nothing open.</p>
+    </div>
+  </header>
+
+
+  <!-- ====================== LINUX ====================== -->
+  <section id="linux">
+    <div class="section-tag">// SECTION 00</div>
+    <h2><span class="h2-num">00</span> FOR NEW COMPUTERS — LINUX</h2>
+
+    <p>If you want to skip the Windows tax entirely, Linux is the answer. These distros come ready out-of-the-box with minimal configuration needed.</p>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Distro</th><th>Best For</th><th>Link</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Linux Mint</strong></td><td>New computers, Windows-like experience</td><td><a href="https://linuxmint.com/" target="_blank">linuxmint.com</a></td></tr>
+          <tr><td><strong>Kubuntu</strong></td><td>New computers, KDE desktop</td><td><a href="https://kubuntu.org/" target="_blank">kubuntu.org</a></td></tr>
+          <tr><td><strong>Lubuntu</strong></td><td>Old / slow computers</td><td><a href="https://lubuntu.me/" target="_blank">lubuntu.me</a></td></tr>
+          <tr><td><strong>Xubuntu</strong></td><td>Old / slow computers, XFCE desktop</td><td><a href="https://xubuntu.org/" target="_blank">xubuntu.org</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="alert alert-info">
+      <span class="alert-icon">ℹ</span>
+      <p>These distros save you all the Windows headaches, but do have some software compatibility trade-offs — especially for gaming or Adobe apps.</p>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ====================== WINDOWS ====================== -->
+  <section id="iso">
+    <div class="section-tag">// SECTION 01</div>
+    <h2><span class="h2-num">01</span> CHOOSE THE RIGHT ISO</h2>
+
+    <p>Download a <mark>clean ISO</mark> directly. Don't modify or debloat the ISO — it's a waste of time. Pick your version below:</p>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Version</th><th>Description</th><th>Best For</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>IoT LTSC</strong> <span class="badge badge-g">MAX PERF</span></td>
+            <td>Lightest version of all. Extremely clean, no bloatware whatsoever.</td>
+            <td>Enthusiasts wanting maximum performance</td>
+          </tr>
+          <tr>
+            <td><strong>LTSC</strong> <span class="badge badge-c">RECOMMENDED</span></td>
+            <td>Long-term support. Security updates only. Clean by default.</td>
+            <td>Users wanting performance without hassle</td>
+          </tr>
+          <tr>
+            <td><strong>Consumer Pro/Home</strong></td>
+            <td>Standard version. More stable but saturated with preinstalled apps.</td>
+            <td>Users needing full Microsoft ecosystem</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="alert alert-warn">
+      <span class="alert-icon">⚠</span>
+      <p><strong>Windows 10 note:</strong> No longer receives feature updates. LTSC versions still get security patches. If you're comfortable managing your own security, Windows 10 LTSC is an excellent lightweight option.</p>
+    </div>
+
+    <div class="alert alert-info">
+      <span class="alert-icon">⚡</span>
+      <p><strong>Activation:</strong> Download and run <a href="https://github.com/massgravel/Microsoft-Activation-Scripts" target="_blank">MAS (Microsoft Activation Scripts)</a> to activate Windows for free.</p>
+    </div>
+
+    <p>📥 Download clean ISOs from <a href="https://massgrave.dev" target="_blank"><strong>massgrave.dev</strong></a></p>
+  </section>
+
+  <hr class="section-divider">
+
+  <section id="usb">
+    <div class="section-tag">// SECTION 02</div>
+    <h2><span class="h2-num">02</span> PREPARE THE BOOTABLE USB</h2>
+
+    <p>Use <a href="https://rufus.ie" target="_blank"><strong>Rufus</strong></a> to write the ISO to your USB drive. If installing <mark>Windows 11</mark>, enable these critical bypass options in Rufus before writing:</p>
+
+    <div class="term-window">
+      <div class="term-bar"><span class="filename">rufus_options.cfg</span></div>
+      <div class="term-body">
+        <ul class="checklist">
+          <li>Remove requirement for 4+ GB RAM, Secure Boot and TPM 2.0</li>
+          <li>Remove requirement for a Microsoft online account</li>
+          <li>Create a local account with a custom username</li>
+          <li>Disable data collection (skip privacy questions)</li>
+          <li>Disable automatic BitLocker device encryption</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="alert alert-tip">
+      <span class="alert-icon">✓</span>
+      <p>These options prevent BitLocker from silently encrypting your drive and Windows from forcing an online account — both cause serious headaches later.</p>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section id="drivers">
+    <div class="section-tag">// SECTION 03</div>
+    <h2><span class="h2-num">03</span> CLEAN GPU DRIVERS</h2>
+
+    <p>Before installing Windows, prepare a slim driver package on the USB. Generic drivers Windows installs on first boot create conflicts. Process differs by GPU brand:</p>
+
+    <div class="two-col">
+      <!-- NVIDIA -->
+      <div class="col-card">
+        <div class="col-title">🟢 NVIDIA — NVCleanstall</div>
+
+        <p style="font-size:12px;margin-bottom:12px;">Download <a href="https://www.techpowerup.com/nvcleanstall/" target="_blank">NVCleanstall</a> — auto-detects best driver for your GPU.</p>
+
+        <h4>Components to Install</h4>
+        <ul class="checklist">
+          <li>Display Driver (required)</li>
+          <li>Legacy Control Panel</li>
+          <li class="off">HD Audio via HDMI (only if you use audio via monitor/TV)</li>
+        </ul>
+
+        <h4>Tweaks Tab</h4>
+        <ul class="checklist">
+          <li>Disable Installer Telemetry &amp; Advertising</li>
+          <li>Perform a Clean Installation</li>
+          <li>Disable Multiplane Overlay (MPO)</li>
+          <li class="off">Unattended Express Installation</li>
+          <li class="off">Add Hardware Support</li>
+          <li class="off">Enable DLSS Indicator</li>
+        </ul>
+
+        <p style="font-size:12px;margin-top:12px;color:var(--text-dim)">→ Click <strong style="color:var(--text-hi)">Build Package</strong> → copy the .exe to your USB.</p>
+      </div>
+
+      <!-- AMD -->
+      <div class="col-card">
+        <div class="col-title">🔴 AMD — Radeon Slimmer</div>
+
+        <p style="font-size:12px;margin-bottom:12px;">Download <a href="https://www.amd.com/en/support/download/drivers.html" target="_blank">WHQL driver</a> + <a href="https://github.com/GSDragoon/RadeonSoftwareSlimmer" target="_blank">Radeon Software Slimmer</a></p>
+
+        <h4>Packages Tab</h4>
+        <ul class="checklist">
+          <li>Microsoft Visual C++ 2022 Redistributable 64bit</li>
+          <li class="off">AMD HDMI Audio Driver (skip if no HDMI audio)</li>
+          <li class="off">AMD High Definition Audio Controller</li>
+          <li class="off">All AMD ACP audio entries</li>
+        </ul>
+
+        <h4>Scheduled Tasks Tab</h4>
+        <ul class="checklist">
+          <li class="off">AMDInstallLauncher — DISABLE</li>
+          <li class="off">AMD COMPUTE — DISABLE</li>
+          <li class="off">AMD Link Driver — DISABLE</li>
+          <li class="off">All other auto-update tasks — DISABLE</li>
+        </ul>
+
+        <h4>Display Driver Components</h4>
+        <ul class="checklist">
+          <li>AMD Crash Defender (amdfendr.inf)</li>
+          <li>AMD-Windows Support Components (amdwin)</li>
+          <li class="off">All others — REMOVE</li>
+        </ul>
+
+        <p style="font-size:12px;margin-top:12px;color:var(--text-dim)">→ Click <strong style="color:var(--text-hi)">Modify Installer</strong> → copy output folder to USB.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section id="install">
+    <div class="section-tag">// SECTION 04</div>
+    <h2><span class="h2-num">04</span> INSTALL WINDOWS</h2>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-n">1</div>
+        <p>Boot from the USB and follow the normal Windows installation process.</p>
+      </div>
+      <div class="step">
+        <div class="step-n">2</div>
+        <p><strong style="color:var(--amber)">CRITICAL:</strong> When Windows is about to start for the first time — disconnect your Ethernet cable or disable WiFi. Don't let generic video drivers or updates get installed yet.</p>
+      </div>
+      <div class="step">
+        <div class="step-n">3</div>
+        <p><strong>Windows 10 only:</strong> When prompted for a Microsoft account, press <code>Shift + F10</code> and run:</p>
+      </div>
+    </div>
+
+    <div class="code-block">OOBE\BYPASSNRO</div>
+
+    <p style="font-size:12px;color:var(--text-dim);margin-top:-8px;">The PC reboots. Continue normally and create a local account.</p>
+
+    <div class="steps" style="margin-top:16px;">
+      <div class="step">
+        <div class="step-n">4</div>
+        <p>Inside Windows, install your prepared GPU drivers (quick install). Reboot.</p>
+      </div>
+      <div class="step">
+        <div class="step-n">5</div>
+        <p>Reconnect to the internet. Done.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section id="optimize">
+    <div class="section-tag">// SECTION 05</div>
+    <h2><span class="h2-num">05</span> OPTIMIZE THE SYSTEM</h2>
+
+    <p>Three approaches — pick one or combine them:</p>
+
+    <div class="options-grid">
+      <div class="option-card opt-a">
+        <div class="opt-label">A</div>
+        <div class="opt-name">Playbooks</div>
+        <div class="opt-desc">AtlasOS / ReviOS · Deep system modification · Max performance</div>
+      </div>
+      <div class="option-card opt-b">
+        <div class="opt-label">B</div>
+        <div class="opt-name">ChrisTitus</div>
+        <div class="opt-desc">PowerShell script · Easy & effective · Great balance</div>
+      </div>
+      <div class="option-card opt-c">
+        <div class="opt-label">A+B</div>
+        <div class="opt-name">Combined</div>
+        <div class="opt-desc">Both together · Absolute maximum · For enthusiasts</div>
+      </div>
+    </div>
+
+    <!-- OPTION A -->
+    <h3>Option A — Playbooks (AtlasOS / ReviOS)</h3>
+
+    <p>Playbooks modify Windows at a deep level via scripts, registry edits, and service injection — leaving only what is essential.</p>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th></th><th>AtlasOS</th><th>ReviOS</th></tr></thead>
+        <tbody>
+          <tr><td>Focus</td><td>Stability</td><td>Maximum performance</td></tr>
+          <tr><td>Windows 10</td><td><span style="color:var(--red)">✗ Not supported</span></td><td><span style="color:var(--green)">✓ Supported</span></td></tr>
+          <tr><td>Windows 11</td><td><span style="color:var(--green)">✓ Supported</span></td><td><span style="color:var(--green)">✓ Supported</span></td></tr>
+          <tr><td>Download</td><td><a href="https://atlasos.net" target="_blank">atlasos.net</a></td><td><a href="https://revi.cc" target="_blank">revi.cc</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-n">1</div>
+        <p>Download the Playbook and <a href="https://ameliorated.io" target="_blank">AME Wizard</a>. Unzip both.</p>
+      </div>
+      <div class="step">
+        <div class="step-n">2</div>
+        <p>Open AME Wizard and drag the Playbook into it.</p>
+      </div>
+      <div class="step">
+        <div class="step-n">3</div>
+        <p>Follow the prompts: choose whether to remove Windows Defender, pick your browser, set privacy options.</p>
+      </div>
+      <div class="step">
+        <div class="step-n">4</div>
+        <p>PC reboots automatically when done. <span style="color:var(--green)">✓</span></p>
+      </div>
+    </div>
+
+    <!-- OPTION B -->
+    <h3>Option B — ChrisTitus Script</h3>
+
+    <p>Open <strong>PowerShell as Administrator</strong> and run:</p>
+
+    <div class="code-block">irm "https://christitus.com/win" | iex</div>
+
+    <p>In the <strong>Tweaks</strong> tab, configure the following:</p>
+
+    <div class="two-col">
+      <div class="col-card">
+        <div class="col-title" style="color:var(--green)">ESSENTIAL TWEAKS</div>
+        <ul class="checklist">
+          <li>Create Restore Point</li>
+          <li>Delete Temporary Files</li>
+          <li>Disable Activity History</li>
+          <li>Disable ConsumerFeatures</li>
+          <li>Disable Explorer Auto Folder Discovery</li>
+          <li>Disable Hibernation</li>
+          <li>Disable Location Tracking</li>
+          <li>Disable PowerShell 7 Telemetry</li>
+          <li>Disable Telemetry</li>
+          <li>Disable Win Platform Binary Table (WPBT)</li>
+          <li>Enable End Task With Right Click</li>
+          <li>Remove Widgets</li>
+          <li>Run Disk Cleanup</li>
+          <li>Set Services to Manual</li>
+        </ul>
+      </div>
+      <div class="col-card">
+        <div class="col-title" style="color:var(--amber)">ADVANCED TWEAKS</div>
+        <ul class="checklist">
+          <li>Disable Microsoft Copilot</li>
+          <li>Remove Microsoft Edge</li>
+          <li>Remove OneDrive</li>
+          <li>Remove Xbox &amp; Gaming Components</li>
+          <li class="warn">Remove ALL MS Store Apps — NOT recommended</li>
+        </ul>
+
+        <div class="col-title" style="color:var(--cyan);margin-top:16px;">PREFERENCES</div>
+        <ul class="checklist">
+          <li>Dark Theme for Windows</li>
+          <li>Disable Multiplane Overlay</li>
+          <li>Modern Standby Fix</li>
+          <li>Show File Extensions</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="alert alert-danger">
+      <span class="alert-icon">⚡</span>
+      <p><strong>Don't skip this:</strong> In the Performance Plans section → click <strong>"Add and Activate Ultimate Performance Profile"</strong>.</p>
+    </div>
+
+    <div class="alert alert-tip">
+      <span class="alert-icon">✓</span>
+      <p>If you removed Edge and have no browser: the <strong>first tab</strong> of the script lets you install Chrome, Firefox, Brave, etc.</p>
+    </div>
+
+    <!-- BONUS -->
+    <h3>Bonus — Overclock &amp; Undervolt</h3>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Technique</th><th>What It Does</th><th>Result</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Overclock</strong></td>
+            <td>Increases CPU / GPU / RAM frequency above factory spec</td>
+            <td>More raw performance</td>
+          </tr>
+          <tr>
+            <td><strong>Undervolt</strong></td>
+            <td>Reduces voltage while maintaining performance</td>
+            <td>Less heat, less power draw, more stability</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="alert alert-info">
+      <span class="alert-icon">ℹ</span>
+      <p>These are one-on-one because every component varies. No universal recipe — measure and adjust per your specific CPU/GPU.</p>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ====================== REMOTE ====================== -->
+  <section id="remote">
+    <div class="section-tag">// SECTION 06</div>
+    <h2><span class="h2-num">06</span> REMOTE DESKTOP</h2>
+
+    <p>Because the family member in trouble is always on the other side of the globe at 3am.</p>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Tool</th><th>Notes</th><th>Link</th></tr></thead>
+        <tbody>
+          <tr><td><strong>RustDesk</strong> <span class="badge badge-g">OPEN SOURCE</span></td><td>Self-hostable, privacy-respecting, free</td><td><a href="https://rustdesk.com/" target="_blank">rustdesk.com</a></td></tr>
+          <tr><td><strong>AnyDesk</strong></td><td>Fast, lightweight, cross-platform</td><td><a href="https://anydesk.com/" target="_blank">anydesk.com</a></td></tr>
+          <tr><td><strong>TeamViewer</strong></td><td>Classic choice, feature-rich</td><td><a href="https://www.teamviewer.com/" target="_blank">teamviewer.com</a></td></tr>
+          <tr><td><strong>UltraVNC</strong> <span class="badge badge-g">OPEN SOURCE</span></td><td>Good for LAN / local networks</td><td><a href="https://uvnc.com/" target="_blank">uvnc.com</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ====================== CLEANUP ====================== -->
+  <section id="cleanup">
+    <div class="section-tag">// SECTION 07</div>
+    <h2><span class="h2-num">07</span> CLEANUP &amp; DEBLOAT</h2>
+
+    <p>I usually have a script pack ready with these. Download, run, done.</p>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Tool</th><th>Purpose</th><th>Link</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Bulk Crap Uninstaller</strong></td><td>Mass uninstall apps cleanly</td><td><a href="https://www.bcuninstaller.com/" target="_blank">bcuninstaller.com</a></td></tr>
+          <tr><td><strong>BleachBit</strong></td><td>Deep disk cleanup</td><td><a href="https://www.bleachbit.org/" target="_blank">bleachbit.org</a></td></tr>
+          <tr><td><strong>Privatezilla</strong></td><td>Disable Windows telemetry &amp; spyware</td><td><a href="https://github.com/builtbybel/privatezilla" target="_blank">github.com/builtbybel/privatezilla</a></td></tr>
+          <tr><td><strong>DoNotSpy11</strong></td><td>Disable Win 10/11 telemetry</td><td><a href="https://pxc-coding.com/donotspy11/" target="_blank">pxc-coding.com/donotspy11</a></td></tr>
+          <tr><td><strong>LockHunter</strong></td><td>Delete files that refuse to be deleted</td><td><a href="https://lockhunter.com/" target="_blank">lockhunter.com</a></td></tr>
+          <tr><td><strong>Czkawka</strong></td><td>Remove unnecessary &amp; duplicate files</td><td><a href="https://github.com/qarmin/czkawka" target="_blank">github.com/qarmin/czkawka</a></td></tr>
+          <tr><td><strong>dupeGuru</strong></td><td>Find duplicate files</td><td><a href="https://dupeguru.voltaicideas.net/" target="_blank">dupeguru.voltaicideas.net</a></td></tr>
+          <tr><td><strong>WinDirStat</strong></td><td>Disk usage visualizer &amp; cleanup</td><td><a href="https://windirstat.net/" target="_blank">windirstat.net</a></td></tr>
+          <tr><td><strong>Defraggler</strong></td><td>Disk defrag — HDDs only, never SSD</td><td><a href="https://www.ccleaner.com/defraggler/" target="_blank">ccleaner.com/defraggler</a></td></tr>
+          <tr><td><strong>Open-Shell</strong></td><td>Classic Start menu for Win 10/11</td><td><a href="https://github.com/Open-Shell/Open-Shell-Menu" target="_blank">github.com/Open-Shell</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ====================== RECOVERY ====================== -->
+  <section id="recovery">
+    <div class="section-tag">// SECTION 08</div>
+    <h2><span class="h2-num">08</span> DATA RECOVERY</h2>
+
+    <div class="alert alert-danger">
+      <span class="alert-icon">!</span>
+      <p>I try to avoid this task. Please have <strong>BACKUPS</strong> and educate your family and friends about them.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Tool</th><th>Notes</th><th>Link</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Recuva</strong></td><td>Recover deleted files, easy UI</td><td><a href="https://www.ccleaner.com/recuva/" target="_blank">ccleaner.com/recuva</a></td></tr>
+          <tr><td><strong>TestDisk / PhotoRec</strong></td><td>Powerful open-source partition &amp; file recovery</td><td><a href="https://www.cgsecurity.org/wiki/TestDisk" target="_blank">cgsecurity.org</a></td></tr>
+          <tr><td><strong>Autopsy</strong></td><td>Full digital forensics platform</td><td><a href="https://www.sleuthkit.org/autopsy/" target="_blank">sleuthkit.org/autopsy</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ====================== BACKUPS ====================== -->
+  <section id="backups">
+    <div class="section-tag">// SECTION 09</div>
+    <h2><span class="h2-num">09</span> BACKUPS</h2>
+
+    <h3>The 3-2-1 Rule</h3>
+
+    <div class="term-window">
+      <div class="term-bar"><span class="filename">backup_policy.cfg</span></div>
+      <div class="term-body">
+        <ul class="checklist">
+          <li>Keep at least <strong style="color:var(--text-hi)">3</strong> copies of your data</li>
+          <li>Store <strong style="color:var(--text-hi)">2</strong> backup copies on different storage media</li>
+          <li>Keep <strong style="color:var(--text-hi)">1</strong> copy offsite — i.e., "the cloud"</li>
+        </ul>
+      </div>
+    </div>
+
+    <h4>Disk Cloning</h4>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Tool</th><th>Link</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Clonezilla</strong></td><td><a href="https://clonezilla.org/" target="_blank">clonezilla.org</a></td></tr>
+          <tr><td><strong>Rescuezilla</strong></td><td><a href="https://rescuezilla.com/" target="_blank">rescuezilla.com</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4>Backup Software</h4>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Tool</th><th>Notes</th><th>Link</th></tr></thead>
+        <tbody>
+          <tr><td><strong>7-Zip</strong></td><td>Compression &amp; archiving — replaces WinRAR/WinZip</td><td><a href="https://www.7-zip.org/" target="_blank">7-zip.org</a></td></tr>
+          <tr><td><strong>Duplicati</strong></td><td>Free encrypted cloud backups</td><td><a href="https://www.duplicati.com/" target="_blank">duplicati.com</a></td></tr>
+          <tr><td><strong>FreeFileSync</strong></td><td>Open-source file sync &amp; backup</td><td><a href="https://freefilesync.org/" target="_blank">freefilesync.org</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4>Cloud Storage</h4>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Service</th><th>Link</th></tr></thead>
+        <tbody>
+          <tr><td><strong>pCloud</strong></td><td><a href="https://www.pcloud.com/" target="_blank">pcloud.com</a></td></tr>
+          <tr><td><strong>Google Drive</strong></td><td><a href="https://drive.google.com/" target="_blank">drive.google.com</a></td></tr>
+          <tr><td><strong>Dropbox</strong></td><td><a href="https://www.dropbox.com/" target="_blank">dropbox.com</a></td></tr>
+          <tr><td><strong>OneDrive</strong></td><td><a href="https://onedrive.live.com/" target="_blank">onedrive.live.com</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4>Encrypt Your Cloud</h4>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Tool</th><th>Link</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Cryptomator</strong></td><td><a href="https://cryptomator.org/" target="_blank">cryptomator.org</a></td></tr>
+          <tr><td><strong>VeraCrypt</strong></td><td><a href="https://www.veracrypt.fr/" target="_blank">veracrypt.fr</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ====================== MALWARE ====================== -->
+  <section id="malware">
+    <div class="section-tag">// SECTION 10</div>
+    <h2><span class="h2-num">10</span> VIRUS &amp; MALWARE</h2>
+
+    <p>My approach: run a full scan + immunization, remove the scanner, leave only Windows Defender. Most family hardware is modest and full-time AV software tends to slow it to a crawl.</p>
+
+    <h4>Scanners</h4>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Tool</th><th>Notes</th><th>Link</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Windows Defender</strong> <span class="badge badge-g">KEEP THIS</span></td><td>Leave as the permanent AV after scanning</td><td>Built-in</td></tr>
+          <tr><td><strong>Avira Free</strong></td><td>Good free one-time scanner</td><td><a href="https://www.avira.com/en/free-antivirus-windows" target="_blank">avira.com</a></td></tr>
+          <tr><td><strong>Spybot Free</strong></td><td>Has a great "Immunization" feature — always use it</td><td><a href="https://www.safer-networking.org/products/spybot-free-edition/" target="_blank">safer-networking.org</a></td></tr>
+          <tr><td><strong>Malwarebytes (MBAM)</strong></td><td>Great secondary scanner, catches what others miss</td><td><a href="https://www.malwarebytes.com" target="_blank">malwarebytes.com</a></td></tr>
+          <tr><td><strong>ClamAV</strong> <span class="badge badge-g">OPEN SOURCE</span></td><td>Open source AV engine</td><td><a href="https://www.clamav.net/" target="_blank">clamav.net</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4>Specialized Tools</h4>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Tool</th><th>Link</th></tr></thead>
+        <tbody>
+          <tr><td><strong>RogueKiller</strong></td><td><a href="https://www.adlice.com/roguekiller/" target="_blank">adlice.com/roguekiller</a></td></tr>
+          <tr><td><strong>AdwCleaner</strong></td><td><a href="https://www.malwarebytes.com/adwcleaner/" target="_blank">malwarebytes.com/adwcleaner</a></td></tr>
+          <tr><td><strong>RKill</strong></td><td><a href="https://www.bleepingcomputer.com/download/rkill/" target="_blank">bleepingcomputer.com/download/rkill</a></td></tr>
+          <tr><td><strong>Panda USB Vaccine</strong></td><td><a href="https://www.pandasecurity.com/en/mediacenter/products/panda-usb-and-autorun-vaccine/" target="_blank">pandasecurity.com</a></td></tr>
+          <tr><td><strong>OSArmor</strong></td><td><a href="https://www.osarmor.com/" target="_blank">osarmor.com</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="alert alert-tip">
+      <span class="alert-icon">✓</span>
+      <p>In Chrome or Firefox, always install <a href="https://ublockorigin.com/" target="_blank"><strong>uBlock Origin</strong></a> — it's a must. No exceptions.</p>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ====================== DISK HEALTH ====================== -->
+  <section id="disk">
+    <div class="section-tag">// SECTION 11</div>
+    <h2><span class="h2-num">11</span> DISK HEALTH</h2>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Tool</th><th>Purpose</th><th>Link</th></tr></thead>
+        <tbody>
+          <tr><td><strong>CrystalDiskInfo</strong></td><td>S.M.A.R.T. health monitoring for HDD/SSD/NVMe</td><td><a href="https://crystalmark.info/en/software/crystaldiskinfo/" target="_blank">crystalmark.info</a></td></tr>
+          <tr><td><strong>HDDScan</strong></td><td>Deep surface scan and diagnostics</td><td><a href="https://hddscan.com/" target="_blank">hddscan.com</a></td></tr>
+          <tr><td><strong>chkdsk</strong></td><td>Built-in Windows disk checker</td><td><code>chkdsk /f /r</code> in CMD as admin</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ====================== BULK INSTALLERS ====================== -->
+  <section id="bulk">
+    <div class="section-tag">// SECTION 12</div>
+    <h2><span class="h2-num">12</span> INSTALL / UPDATE SOFTWARE IN BULK</h2>
+
+    <p>Save time — install and update everything at once instead of one by one.</p>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Tool</th><th>Notes</th><th>Link</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Winget</strong></td><td>Official Microsoft package manager, built into Win 11</td><td>Built-in</td></tr>
+          <tr><td><strong>Ninite</strong></td><td>Simple bulk installer, zero bloat, web-based</td><td><a href="https://ninite.com/" target="_blank">ninite.com</a></td></tr>
+          <tr><td><strong>Chocolatey</strong></td><td>CLI package manager, huge library</td><td><a href="https://chocolatey.org/" target="_blank">chocolatey.org</a></td></tr>
+          <tr><td><strong>Patch My PC</strong></td><td>Auto-update already installed software</td><td><a href="https://patchmypc.com/home-updater" target="_blank">patchmypc.com</a></td></tr>
+          <tr><td><strong>Snappy Driver Installer</strong></td><td>Offline driver installer, great for fresh installs</td><td><a href="https://sdi-tool.org/" target="_blank">sdi-tool.org</a></td></tr>
+          <tr><td><strong>Just Install</strong></td><td>Minimal CLI installer</td><td><a href="https://github.com/just-install/just-install" target="_blank">github.com/just-install</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ====================== FILE MANAGERS ====================== -->
+  <section id="files">
+    <div class="section-tag">// SECTION 13</div>
+    <h2><span class="h2-num">13</span> FILE MANAGERS &amp; SEARCH</h2>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Tool</th><th>Notes</th><th>Link</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Everything</strong> <span class="badge badge-c">MUST HAVE</span></td><td>Instant file search — far better than Windows Search</td><td><a href="https://www.voidtools.com/en-us/" target="_blank">voidtools.com</a></td></tr>
+          <tr><td><strong>Explorer++</strong></td><td>Tabbed Windows Explorer replacement</td><td><a href="https://explorerplusplus.com/" target="_blank">explorerplusplus.com</a></td></tr>
+          <tr><td><strong>Total Commander</strong></td><td>Dual-pane, very powerful, industry standard</td><td><a href="https://www.ghisler.com/" target="_blank">ghisler.com</a></td></tr>
+          <tr><td><strong>Far Manager</strong></td><td>Console-style dual-pane, keyboard-driven</td><td><a href="https://www.farmanager.com/" target="_blank">farmanager.com</a></td></tr>
+          <tr><td><strong>MultiCommander</strong></td><td>Feature-rich dual-pane manager</td><td><a href="http://multicommander.com/" target="_blank">multicommander.com</a></td></tr>
+          <tr><td><strong>Meld</strong></td><td>Merge/diff files, directories, and git repos</td><td><a href="https://meldmerge.org/" target="_blank">meldmerge.org</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ====================== HARDWARE ====================== -->
+  <section id="hardware">
+    <div class="section-tag">// SECTION 14</div>
+    <h2><span class="h2-num">14</span> HARDWARE INFO &amp; DIAGNOSTICS</h2>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Tool</th><th>Purpose</th><th>Link</th></tr></thead>
+        <tbody>
+          <tr><td><strong>HWiNFO</strong></td><td>Detailed hardware info &amp; real-time sensor monitoring</td><td><a href="https://www.hwinfo.com/" target="_blank">hwinfo.com</a></td></tr>
+          <tr><td><strong>Speccy</strong></td><td>Quick hardware overview</td><td><a href="https://www.ccleaner.com/speccy" target="_blank">ccleaner.com/speccy</a></td></tr>
+          <tr><td><strong>CPU-Z</strong></td><td>CPU, RAM, and motherboard details</td><td><a href="https://www.cpuid.com/softwares/cpu-z.html" target="_blank">cpuid.com/softwares/cpu-z</a></td></tr>
+          <tr><td><strong>GPU-Z</strong></td><td>GPU details and monitoring</td><td><a href="https://www.techpowerup.com/gpuz/" target="_blank">techpowerup.com/gpuz</a></td></tr>
+          <tr><td><strong>WhoCrashed</strong></td><td>Identifies drivers responsible for BSODs</td><td><a href="https://www.resplendence.com/whocrashed" target="_blank">resplendence.com/whocrashed</a></td></tr>
+          <tr><td><strong>CrystalDiskMark</strong></td><td>Disk speed benchmark</td><td><a href="https://crystalmark.info/en/software/crystaldiskmark/" target="_blank">crystalmark.info</a></td></tr>
+          <tr><td><strong>FurMark</strong></td><td>GPU stress test</td><td><a href="https://www.geeks3d.com/furmark/" target="_blank">geeks3d.com/furmark</a></td></tr>
+          <tr><td><strong>Prime95</strong></td><td>CPU stress test</td><td><a href="https://www.mersenne.org/prime95/" target="_blank">mersenne.org/prime95</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ====================== GRAPHICS ====================== -->
+  <section id="media">
+    <div class="section-tag">// SECTION 15</div>
+    <h2><span class="h2-num">15</span> GRAPHICS &amp; MEDIA</h2>
+
+    <div class="two-col">
+      <div>
+        <h4>Video Editing</h4>
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>Tool</th><th>Link</th></tr></thead>
+            <tbody>
+              <tr><td><strong>DaVinci Resolve</strong></td><td><a href="https://www.blackmagicdesign.com/products/davinciresolve/" target="_blank">blackmagicdesign.com</a></td></tr>
+              <tr><td><strong>OpenShot</strong></td><td><a href="https://www.openshot.org/" target="_blank">openshot.org</a></td></tr>
+              <tr><td><strong>Kdenlive</strong></td><td><a href="https://kdenlive.org/" target="_blank">kdenlive.org</a></td></tr>
+              <tr><td><strong>Pitivi</strong></td><td><a href="https://www.pitivi.org/" target="_blank">pitivi.org</a></td></tr>
+              <tr><td><strong>Cinelerra-GG</strong></td><td><a href="https://www.cinelerra-gg.org/" target="_blank">cinelerra-gg.org</a></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h4>Screen Capture &amp; Broadcast</h4>
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>Tool</th><th>Link</th></tr></thead>
+            <tbody>
+              <tr><td><strong>OBS Studio</strong></td><td><a href="https://obsproject.com/" target="_blank">obsproject.com</a></td></tr>
+              <tr><td><strong>ScreenPresso</strong></td><td><a href="https://www.screenpresso.com/" target="_blank">screenpresso.com</a></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div>
+        <h4>Image Editing</h4>
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>Tool</th><th>Link</th></tr></thead>
+            <tbody>
+              <tr><td><strong>GIMP</strong></td><td><a href="https://www.gimp.org/" target="_blank">gimp.org</a></td></tr>
+              <tr><td><strong>Paint.NET</strong></td><td><a href="https://www.getpaint.net/" target="_blank">getpaint.net</a></td></tr>
+              <tr><td><strong>Inkscape</strong></td><td><a href="https://inkscape.org/" target="_blank">inkscape.org</a></td></tr>
+              <tr><td><strong>IrfanView</strong></td><td><a href="https://www.irfanview.com/" target="_blank">irfanview.com</a></td></tr>
+              <tr><td><strong>Aseprite</strong></td><td><a href="https://www.aseprite.org/" target="_blank">aseprite.org</a></td></tr>
+              <tr><td><strong>Krita</strong></td><td><a href="https://krita.org/" target="_blank">krita.org</a></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h4>3D</h4>
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>Tool</th><th>Link</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Blender</strong></td><td><a href="https://www.blender.org/" target="_blank">blender.org</a></td></tr>
+              <tr><td><strong>Wings 3D</strong></td><td><a href="http://www.wings3d.com/" target="_blank">wings3d.com</a></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ====================== EDITORS ====================== -->
+  <section id="editors">
+    <div class="section-tag">// SECTION 16</div>
+    <h2><span class="h2-num">16</span> TEXT EDITORS</h2>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Tool</th><th>Link</th></tr></thead>
+        <tbody>
+          <tr><td><strong>VS Code</strong></td><td><a href="https://code.visualstudio.com/" target="_blank">code.visualstudio.com</a></td></tr>
+          <tr><td><strong>Notepad++</strong></td><td><a href="https://notepad-plus-plus.org/" target="_blank">notepad-plus-plus.org</a></td></tr>
+          <tr><td><strong>CudaText</strong></td><td><a href="https://cudatext.github.io/" target="_blank">cudatext.github.io</a></td></tr>
+          <tr><td><strong>Sublime Text</strong></td><td><a href="https://www.sublimetext.com/" target="_blank">sublimetext.com</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ====================== BEYOND WINDOWS ====================== -->
+  <section id="beyond">
+    <div class="section-tag">// SECTION 17</div>
+    <h2><span class="h2-num">17</span> BEYOND WINDOWS</h2>
+
+    <div class="two-col">
+      <div>
+        <h4>Automation &amp; Shortcuts</h4>
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>Tool</th><th>Link</th></tr></thead>
+            <tbody>
+              <tr><td><strong>FastKeys</strong></td><td><a href="https://www.fastkeysautomation.com/" target="_blank">fastkeysautomation.com</a></td></tr>
+              <tr><td><strong>AutoHotkey</strong></td><td><a href="https://www.autohotkey.com/" target="_blank">autohotkey.com</a></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h4>Virtual Machines</h4>
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>Tool</th><th>Link</th></tr></thead>
+            <tbody>
+              <tr><td><strong>VirtualBox</strong></td><td><a href="https://www.virtualbox.org/" target="_blank">virtualbox.org</a></td></tr>
+              <tr><td><strong>QEMU</strong></td><td><a href="https://www.qemu.org/" target="_blank">qemu.org</a></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div>
+        <h4>Retro / DOS</h4>
+        <div class="term-window">
+          <div class="term-bar"><span class="filename">dosbox.exe</span></div>
+          <div class="term-body" style="font-size:12px;">
+            <p style="margin-bottom:8px;"><strong style="color:var(--text-hi)">DOSBox</strong> — <a href="https://www.dosbox.com/" target="_blank">dosbox.com</a></p>
+            <p style="color:var(--text-dim);margin:0;">Retro fun and games without loot boxes or DLCs. The golden age of computing. C:\&gt;_</p>
+          </div>
+        </div>
+
+        <h4>Hackintosh</h4>
+        <div class="alert alert-info">
+          <span class="alert-icon">⌘</span>
+          <p><a href="https://hackintosh.com/" target="_blank"><strong>hackintosh.com</strong></a> — Everything you need to run macOS on unsupported hardware.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ====================== QUICK REF ====================== -->
+  <section id="quickref">
+    <div class="section-tag">// SECTION 18</div>
+    <h2><span class="h2-num">18</span> QUICK REFERENCE — ALL TOOLS</h2>
+
+    <div class="quick-ref-grid">
+      <div class="qr-item"><span class="qr-name">MassGrave (ISOs)</span><span class="qr-sep">//</span><a href="https://massgrave.dev" target="_blank">massgrave.dev</a></div>
+      <div class="qr-item"><span class="qr-name">MAS (Activation)</span><span class="qr-sep">//</span><a href="https://github.com/massgravel/Microsoft-Activation-Scripts" target="_blank">github.com/massgravel/MAS</a></div>
+      <div class="qr-item"><span class="qr-name">Rufus</span><span class="qr-sep">//</span><a href="https://rufus.ie" target="_blank">rufus.ie</a></div>
+      <div class="qr-item"><span class="qr-name">NVCleanstall</span><span class="qr-sep">//</span><a href="https://www.techpowerup.com/nvcleanstall/" target="_blank">techpowerup.com/nvcleanstall</a></div>
+      <div class="qr-item"><span class="qr-name">AMD Drivers</span><span class="qr-sep">//</span><a href="https://www.amd.com/en/support/download/drivers.html" target="_blank">amd.com/en/support</a></div>
+      <div class="qr-item"><span class="qr-name">Radeon Slimmer</span><span class="qr-sep">//</span><a href="https://github.com/GSDragoon/RadeonSoftwareSlimmer" target="_blank">github.com/GSDragoon</a></div>
+      <div class="qr-item"><span class="qr-name">AtlasOS</span><span class="qr-sep">//</span><a href="https://atlasos.net" target="_blank">atlasos.net</a></div>
+      <div class="qr-item"><span class="qr-name">ReviOS</span><span class="qr-sep">//</span><a href="https://revi.cc" target="_blank">revi.cc</a></div>
+      <div class="qr-item"><span class="qr-name">AME Wizard</span><span class="qr-sep">//</span><a href="https://ameliorated.io" target="_blank">ameliorated.io</a></div>
+      <div class="qr-item"><span class="qr-name">ChrisTitus Utility</span><span class="qr-sep">//</span><a href="https://christitus.com/win" target="_blank">christitus.com/win</a></div>
+      <div class="qr-item"><span class="qr-name">uBlock Origin</span><span class="qr-sep">//</span><a href="https://ublockorigin.com/" target="_blank">ublockorigin.com</a></div>
+      <div class="qr-item"><span class="qr-name">Snappy Driver</span><span class="qr-sep">//</span><a href="https://sdi-tool.org/" target="_blank">sdi-tool.org</a></div>
+      <div class="qr-item"><span class="qr-name">Ninite</span><span class="qr-sep">//</span><a href="https://ninite.com/" target="_blank">ninite.com</a></div>
+      <div class="qr-item"><span class="qr-name">Chocolatey</span><span class="qr-sep">//</span><a href="https://chocolatey.org/" target="_blank">chocolatey.org</a></div>
+      <div class="qr-item"><span class="qr-name">Everything (search)</span><span class="qr-sep">//</span><a href="https://www.voidtools.com/" target="_blank">voidtools.com</a></div>
+      <div class="qr-item"><span class="qr-name">RustDesk</span><span class="qr-sep">//</span><a href="https://rustdesk.com/" target="_blank">rustdesk.com</a></div>
+      <div class="qr-item"><span class="qr-name">CrystalDiskInfo</span><span class="qr-sep">//</span><a href="https://crystalmark.info/en/software/crystaldiskinfo/" target="_blank">crystalmark.info</a></div>
+      <div class="qr-item"><span class="qr-name">HWiNFO</span><span class="qr-sep">//</span><a href="https://www.hwinfo.com/" target="_blank">hwinfo.com</a></div>
+      <div class="qr-item"><span class="qr-name">OBS Studio</span><span class="qr-sep">//</span><a href="https://obsproject.com/" target="_blank">obsproject.com</a></div>
+      <div class="qr-item"><span class="qr-name">GIMP</span><span class="qr-sep">//</span><a href="https://www.gimp.org/" target="_blank">gimp.org</a></div>
+      <div class="qr-item"><span class="qr-name">Blender</span><span class="qr-sep">//</span><a href="https://www.blender.org/" target="_blank">blender.org</a></div>
+      <div class="qr-item"><span class="qr-name">VS Code</span><span class="qr-sep">//</span><a href="https://code.visualstudio.com/" target="_blank">code.visualstudio.com</a></div>
+      <div class="qr-item"><span class="qr-name">VirtualBox</span><span class="qr-sep">//</span><a href="https://www.virtualbox.org/" target="_blank">virtualbox.org</a></div>
+      <div class="qr-item"><span class="qr-name">Malwarebytes</span><span class="qr-sep">//</span><a href="https://www.malwarebytes.com" target="_blank">malwarebytes.com</a></div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-ascii">[ TECH.GUIDE // END OF FILE ]</div>
+    <p>By <strong>Alvaro Gonzalez Ferrer</strong> · <a href="https://alvarogonzalezferrer.github.io/" target="_blank">alvarogonzalezferrer.github.io</a></p>
+    <p style="margin-top:6px;font-size:10px;color:var(--text-dim);">
+      <em>This list is NOT exhaustive, nor does it contain "the TRUE word of GOD himself." It's just what works for me™</em>
+    </p>
+    <p style="margin-top:6px;font-size:10px;color:var(--text-dim);">
+      If you know a better way — send a pull request and improve it. <strong style="color:var(--amber)">For now, this is the way.</strong>
+    </p>
+    <p style="margin-top:12px;font-size:10px;letter-spacing:.15em;color:var(--cyan-dim);">v0.1.0 // MARCH 2026 // OPEN SOURCE</p>
+  </footer>
+
+</main>
+</div>
+
+<script>
+// Close sidebar when clicking a nav link on mobile
+document.querySelectorAll('.sidebar nav a').forEach(a => {
+  a.addEventListener('click', () => {
+    document.querySelector('.sidebar').classList.remove('open');
+  });
+});
+
+// Highlight active section in sidebar
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.sidebar nav a');
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navLinks.forEach(l => l.style.color = '');
+      const active = document.querySelector(`.sidebar nav a[href="#${e.target.id}"]`);
+      if (active) {
+        active.style.color = 'var(--cyan)';
+        active.style.borderLeftColor = 'var(--cyan)';
+      }
+    }
+  });
+}, { threshold: 0.3 });
+
+sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
