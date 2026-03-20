@@ -9,6 +9,12 @@ I'm a Computer Science graduate, so I get often called as "the" tech guy in fami
 
 ---
 
+# 🌐 Website with the guide
+
+[Check this guide as a website](https://alvarogonzalezferrer.github.io/computer_technician_guide/)
+
+---
+
 ## 👤 Who am I?
 
 Hi, I'm Alvaro — Software Developer and Computer Science graduate from Argentina, currently living in Costa Rica.
