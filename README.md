@@ -66,10 +66,7 @@ These come ready out of the box, saving you all the Windows trouble - though you
 
 ## 🪟 For New Computers - Windows
 
-> **Real-world result:** With Chrome (3 windows, 2 tabs each) + Discord + Slack + Spotify + Adobe CC open simultaneously → **107 processes · 18% RAM usage** on a Ryzen 7 5700X3D.  
-> A default Windows install would have nearly **triple** the processes.
-
-If someone is charging you to "remove lag and optimize your PC to the max", this section exists so you never need them again.
+Remove lag and optimize your PC to the max, this section is for you.
 
 ---
 
