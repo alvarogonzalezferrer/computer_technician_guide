@@ -1,355 +1,556 @@
-# Computer technician guide
+# 🖥️ Computer Technician Guide
 
- A *computer technician guide* to repair your friends and family computer. You are "the" tech guy in the family, don't you?
+> *A practical guide to repair, optimize, and maintain your friends and family's computers.*  
+> You are "the" tech guy in the family, aren't you?
 
- One of the hallmarks of our age is the decline of the do-it-yourselfer in favor of the hire-an-expert-to-do-it-insteader. Toilet not flushing? Hire a plumber. Porch falling down? Hire a carpenter. Lights on the blink? Hire an electrician.
+One of the hallmarks of our age is the decline of the do-it-yourselfer in favor of the hire-an-expert-to-do-it-insteader. Toilet not flushing? Hire a plumber. Porch falling down? Hire a carpenter. Lights on the blink? Hire an electrician.
 
- You could argue, as many people have done, that a return to a DIY ethos would be good for society and good for the soul. I like to DIY. Also, I'm a Computer Science graduate, so I get often called as "the" tech guy in family and circle of friends.
+I'm a Computer Science graduate, so I get often called as "the" tech guy in family and circle of friends. This guide exists so you (and they) never have to pay anyone for something you can do yourself.
 
+---
 
-## Version
+## 👤 Who am I?
 
-Revision v0.0.5 - March 2022
+Hi, I'm Alvaro — Software Developer and Computer Science graduate from Argentina, currently living in Costa Rica.
 
-## Motivation
+Check my portfolio: **[alvarogonzalezferrer.github.io](https://alvarogonzalezferrer.github.io/)**  
+I'm a freelancer, mainly expert in C++. You can hire me for your projects!
 
-Everybody that has worked in the Computer Science field knows it. You are "the" tech guy in the family or circle of friends.
+---
 
-You get the late 4 am call of a desperate aunt that needs to finish work and the computer simply wont work, or a cousin that has a new computer without operating system.
+## 📋 Index
 
-Doesn't matter if you work for NASA, or if you have twenty years working in C++, for them your work is "repair computers". They will get mad if you don't repair their computer. Even if you don't have a clue how to do it since you're into algorithms and stuff far away from the mundane software.
+1. [For New Computers — Linux](#-for-new-computers--linux)
+2. [For New Computers — Windows](#-for-new-computers--windows)
+   - [Step 1 — Choose the right ISO](#step-1--choose-the-right-iso)
+   - [Step 2 — Prepare the bootable USB](#step-2--prepare-the-bootable-usb)
+   - [Step 3 — Clean GPU drivers](#step-3--clean-gpu-drivers)
+   - [Step 4 — Install Windows](#step-4--install-windows)
+   - [Step 5 — Optimize the system](#step-5--optimize-the-system)
+3. [Remote Desktop](#-remote-desktop)
+4. [Cleanup & Debloat](#-cleanup--debloat)
+5. [Recover Deleted Data](#-recover-deleted-data)
+6. [Backups](#-backups)
+7. [Virus & Malware](#-virus--malware)
+8. [Disk Health](#-disk-health)
+9. [Install / Update Software in Bulk](#-install--update-software-in-bulk)
+10. [File Managers & Search](#-file-managers--search)
+11. [Hardware Info & Diagnostics](#-hardware-info--diagnostics)
+12. [Graphics & Media](#-graphics--media)
+13. [Text Editors](#-text-editors)
+14. [Beyond Windows](#-beyond-windows)
+15. [Quick Reference — All Tools](#-quick-reference--all-tools)
 
-So well, here comes this little guide, mainly done for myself, the quick and dirty guide to fix someone's else computer at 4 am a Thursday...
+---
 
-This list is NOT extensive, nor has "the TRUE word of GOD himself" into it. Is just a random guide of the things that *works for me*™ .
+## 🐧 For New Computers — Linux
 
-I try to use open source software, avoid bloatware, crapware, and paid software at all costs.
+If you want to avoid Windows headaches entirely:
 
-If you know a better way, please let me know, or better send a pull request and improve it!
+| Distro | Best for | Link |
+|---|---|---|
+| **Linux Mint** | New computers, Windows-like experience | [linuxmint.com](https://linuxmint.com/) |
+| **Kubuntu** | New computers, KDE desktop | [kubuntu.org](https://kubuntu.org/) |
+| **Lubuntu** | Old/slow computers | [lubuntu.me](https://lubuntu.me/) |
+| **Xubuntu** | Old/slow computers, XFCE desktop | [xubuntu.org](https://xubuntu.org/) |
 
-For now, *this is the way*...
+These come ready out of the box, saving you all the Windows trouble — though you do have some software compatibility trade-offs.
 
-# Who am I?
+---
 
-Hi, Im Alvaro, Software developer and Computer Science graduate from Argentina.
+## 🪟 For New Computers — Windows
 
-Currently living at Costa Rica.
+> **Real-world result:** With Chrome (3 windows, 2 tabs each) + Discord + Slack + Spotify + Adobe CC open simultaneously → **107 processes · 18% RAM usage** on a Ryzen 7 5700X3D.  
+> A default Windows install would have nearly **triple** the processes.
 
-Check my portfolio for more info:
+If someone is charging you to "remove lag and optimize your PC to the max", this section exists so you never need them again.
 
-https://alvarogonzalezferrer.github.io/
+---
 
-There you can see my portfolio, I'm a freelancer, mainly expert in C++, you can hire me for your projects!
+### Step 1 — Choose the right ISO
 
-# Donate please
+Download a **clean ISO** directly. Don't modify or debloat the ISO itself — it's a waste of time and resources.
 
-TODO - please donate or use my refer codes
+| Version | Description | Best for |
+|---|---|---|
+| **IoT LTSC** | Lightest version of all. Extremely clean, no bloatware. | Enthusiasts wanting maximum performance |
+| **LTSC** | Long-term support. Security updates only. Clean by default. | Users wanting performance without fuss |
+| **Consumer (Pro/Home)** | Standard version. More stable but full of preinstalled apps. | Users who need full Microsoft ecosystem |
 
-# For new computers
+> [!WARNING]
+> **Windows 10** no longer receives feature updates. LTSC versions still get security patches. If you're comfortable managing your own security, **Windows 10 LTSC** is an excellent lightweight option.
 
-# Linux
+> [!NOTE]
+> For activation, download and run **[MAS (Microsoft Activation Scripts)](https://github.com/massgravel/Microsoft-Activation-Scripts)**.
 
-Just get Linux Mint or Kubuntu if you have a new computer.  
+📥 Download clean ISOs from **[massgrave.dev](https://massgrave.dev)** — has all clean versions available.
 
-https://linuxmint.com/
+---
 
-https://kubuntu.org/
+### Step 2 — Prepare the bootable USB
 
-Lubuntu or Xubuntu if you have a old slow computer.
+Use **[Rufus](https://rufus.ie)** to write the ISO to your USB drive.
 
-https://lubuntu.me/
+If installing **Windows 11**, Rufus offers critical bypass options. Check all of these:
 
-https://xubuntu.org/
+- [x] Remove requirement for 4+ GB RAM, Secure Boot, and TPM 2.0
+- [x] Remove requirement for a Microsoft online account
+- [x] Create a local account with a custom username
+- [x] Disable data collection (skip privacy questions)
+- [x] Disable automatic BitLocker device encryption
 
-These Linux distros come ready out of the box, saving you all the trouble of Windows (but you do have some compatibility issues).
+> [!TIP]
+> These options prevent BitLocker from silently encrypting your drive and Windows from forcing an online account — both cause headaches later.
 
-Enjoy
+---
 
-# Windows
+### Step 3 — Clean GPU drivers
 
-For new computers or *recently formated*.
+**Before installing Windows**, prepare a slim driver package on the same USB. Generic drivers Windows installs on first boot can cause conflicts.
 
-Install the operating system, drivers and software (see automated installers below, i.e Snappy, Patch My Pc or Ninite).
+#### 🟢 Nvidia GPU — NVCleanstall
 
-1. Get Windows 10 :
-- https://www.microsoft.com/en-us/software-download/windows10
-or
-- https://tb.rg-adguard.net/public.php
+1. Download **[NVCleanstall](https://www.techpowerup.com/nvcleanstall/)** — auto-detects the best driver for your GPU.
+2. In **components to install**, select only what's needed:
+   - [x] Display Driver *(required)*
+   - [x] Legacy Control Panel
+   - [ ] HD Audio via HDMI *(only if you use audio through monitor/TV)*
+3. In the **Tweaks** tab, check the following:
+   - [x] Disable Installer Telemetry & Advertising
+   - [x] Perform a Clean Installation
+   - [x] Disable Multiplane Overlay (MPO)
+   - [ ] Unattended Express Installation
+   - [ ] Add Hardware Support
+   - [ ] Enable DLSS Indicator
+4. Click **Build Package** → generates an `.exe` to copy to your USB.
 
-2. Activate it. Purchase keys, or download and run MAS (Microsoft-Activation-Scripts) to activate.
+#### 🔴 AMD GPU — Radeon Software Slimmer
 
-- https://github.com/massgravel/Microsoft-Activation-Scripts
+1. Download the **WHQL** driver from [AMD's official site](https://www.amd.com/en/support/download/drivers.html).
+2. Download **[Radeon Software Slimmer](https://github.com/GSDragoon/RadeonSoftwareSlimmer)** from GitHub.
+3. Open Slimmer, load the driver `.exe`.
 
-3. Install drivers, i.e with Snappy
+**`Packages` tab** — uncheck everything except:
+- [x] Microsoft Visual C++ 2022 Redistributable 64 bit
 
-4. Disable telemetry, cortana, ms store, xbox bullshit, and all the crap that win10 has... i.e with Privatezilla
+Uncheck all HDMI audio packages if you don't need audio through monitor/TV.
 
-5. Set it up to work fast, put classic start, disable all visual effects.
+**`Scheduled Tasks` tab** — disable all auto-update tasks (AMDInstallLauncher, AMD COMPUTE, AMD Link Driver, etc.).
 
-6. Install user software as needed. i.e with Ninite or Chocolatey
+**`Display Driver Components` tab** — keep only:
+- [x] AMD Crash Defender (`amdfendr.inf`)
+- [x] AMD-Windows Support Components (`amdwin-u0198634.inf`)
 
-## Classic start menu
+4. Click **Modify Installer** → copy the output folder to the USB.
 
-The Windows 10 start menu sucks, is slow, I prefer Open Shell
+---
 
-* Classic style Start Menu for Windows 7, 8, 8.1, 10: https://github.com/Open-Shell/Open-Shell-Menu
+### Step 4 — Install Windows
 
-## Drivers
+1. Boot from the USB and follow the normal installation process.
+2. **When Windows is about to start for the first time** — disconnect Ethernet or disable WiFi. Don't let generic drivers or updates install yet.
+3. **Windows 10 only** — when it asks for a Microsoft account, press `Shift + F10` and run:
 
-* Snappy auto driver updater - installar: https://sdi-tool.org/
+```
+OOBE\BYPASSNRO
+```
 
-# Software for Windows  
+The PC reboots. Continue normally and create a local account.
 
-## Remote Desktop
+4. Inside Windows, install your prepared GPU drivers (quick install). Reboot.
+5. Reconnect to the internet.
 
-Adding that they always call around 2 am to 4 am, the family member in trouble is usually at the other side of the globe, so a remote desktop software is a must.
+---
 
-* RustDesk: https://rustdesk.com/ 
+### Step 5 — Optimize the system
 
-* Any Desk
+Three approaches — pick one or combine them:
 
-* Team Viewer
+| Option | Method | Aggressiveness | Best for |
+|---|---|---|---|
+| **A** | Playbooks (AtlasOS / ReviOS) | 🔴 High | Maximum performance |
+| **B** | ChrisTitus Script | 🟡 Medium | Easy and effective |
+| **A + B** | Both combined | 🔴🔴 Maximum | Enthusiasts |
 
-* UltraVNC
+---
 
-Now you are into their computer... time to work, mostly automated so I don't lose my valuable time. I usually have a script with a pack with the software I'm going to use. Download the pack, run it and be done.
+#### Option A — Playbooks (AtlasOS / ReviOS)
 
-## Cleanup
+Playbooks deeply modify Windows via scripts, registry edits, and service injection — leaving only what's essential.
 
-* Bulk Crap Uninstaller
+| | **AtlasOS** | **ReviOS** |
+|---|---|---|
+| **Focus** | Stability | Maximum performance |
+| **Windows 10** | ❌ Not supported | ✅ Supported |
+| **Windows 11** | ✅ Supported | ✅ Supported |
+| **Download** | [atlasos.net](https://atlasos.net) | [revi.cc](https://revi.cc) |
 
-* Bleach Bit
+**Steps:**
 
-* Privatezilla - disable windows telemetry and general spyware from micro$oft... - https://www.builtbybel.com/ms-apps/privatezilla
+1. Download the **Playbook** and **[AME Wizard](https://ameliorated.io)**.
+2. Unzip both and open AME Wizard.
+3. Drag the Playbook into AME Wizard and follow the prompts (Defender, browser, privacy options).
+4. PC reboots automatically when done. ✅
 
-* DoNotSpy10 - disable Win10 telemetry and spyware - https://pxc-coding.com/donotspy10/
+---
 
-* Lock Hunter - https://lockhunter.com/ -- To delete those files that can't be deleted.
+#### Option B — ChrisTitus Script
 
-* Czkawka  - https://qarmin.github.io/czkawka/ -- remove unnecessary files from your computer
+Open **PowerShell as Administrator** and run:
 
-* Dupe Guru - https://dupeguru.voltaicideas.net/ -- find duplicate files
+```powershell
+irm "https://christitus.com/win" | iex
+```
 
-* Windirstat - https://windirstat.net/ --  disk usage statistics viewer and cleanup tool
+In the **Tweaks** tab, enable the following:
 
-* Defraggler -- defrag disk , old school, I usually don't do it.
+**✅ Essential Tweaks** *(enable all)*
 
-Obsolete:
-* FSLint - https://www.pixelbeat.org/fslint/ -- find and clean various forms of lint on a filesystem , duplicate files, etc
+- [x] Create Restore Point
+- [x] Delete Temporary Files
+- [x] Disable Activity History
+- [x] Disable ConsumerFeatures
+- [x] Disable Explorer Automatic Folder Discovery
+- [x] Disable Hibernation
+- [x] Disable Location Tracking
+- [x] Disable PowerShell 7 Telemetry
+- [x] Disable Telemetry
+- [x] Disable Windows Platform Binary Table (WPBT)
+- [x] Enable End Task With Right Click
+- [x] Remove Widgets
+- [x] Run Disk Cleanup
+- [x] Set Services to Manual
 
-## Recover deleted data
+**⚠️ Advanced Tweaks** *(pick based on your needs)*
 
-I try to avoid this task, please have **BACKUPS**!
+- [x] Disable Microsoft Copilot
+- [x] Remove Microsoft Edge
+- [x] Remove OneDrive
+- [x] Remove Xbox & Gaming Components
+- [ ] Remove ALL MS Store Apps — ⛔ Not recommended
 
-**Educate your family and friends on the importance of having BACKUPS**
+**🔧 Customize Preferences** *(recommended)*
 
-* Autopsy - http://www.sleuthkit.org/autopsy/index.php -- digital forensics platform
+- [x] Dark Theme for Windows
+- [x] Disable Multiplane Overlay
+- [x] Modern Standby Fix
+- [x] Show File Extensions
 
-* Recuva -- recover deleted files
+**🏎️ Performance Plans — don't skip:**
 
-Alternatives:
+```
+→ Add and Activate Ultimate Performance Profile
+```
 
-https://alternativeto.net/software/recuva/
+> [!IMPORTANT]
+> If you removed Edge and have no browser: the **first tab** of the script lets you install Chrome, Firefox, Brave, etc.
 
-## Backups
+Reboot when done. ✅
 
-Golden Rules for data backup:
+---
 
-An easy-to-remember acronym for a common approach to keeping your data safe is 3-2-1 backup rule in almost any failure scenario. The rule is:
+#### Bonus — Overclock & Undervolt
 
-1. Keeps at least three copies of your data
+| Technique | What it does | Result |
+|---|---|---|
+| **Overclock** | Increases CPU/GPU/RAM frequency above factory spec | More raw performance |
+| **Undervolt** | Reduces voltage while maintaining performance | Less heat, less power draw, more stability |
 
-2. Stores two backup copies on different storage media
+> [!NOTE]
+> These are **one-on-one** because every component varies. There's no universal recipe — you need to measure and adjust per your specific CPU/GPU.
 
-3. With one of them located offsite. i.e "the cloud"
+---
 
-### Disk cloning 
+## 🌐 Remote Desktop
 
-* Clonezilla
+Because the family member in trouble is usually on the other side of the globe at 3am:
 
-* Rescuezilla: https://rescuezilla.com/ 
+| Tool | Link | Notes |
+|---|---|---|
+| **RustDesk** | [rustdesk.com](https://rustdesk.com/) | Open source, self-hostable |
+| **AnyDesk** | [anydesk.com](https://anydesk.com/) | Fast, lightweight |
+| **TeamViewer** | [teamviewer.com](https://www.teamviewer.com/) | Classic, feature-rich |
+| **UltraVNC** | [uvnc.com](https://uvnc.com/) | Open source, LAN-focused |
 
-### Software for backups
+---
 
-* 7-Zip -- Pretty good, not only for backup, replaces WinRar, Winzip, etc : https://www.7-zip.org/
+## 🧹 Cleanup & Debloat
 
-## Cloud Storage
+I usually have a script pack ready. Download, run, done.
 
-* pCloud
+| Tool | Link | Purpose |
+|---|---|---|
+| **Bulk Crap Uninstaller** | [bcuninstaller.com](https://www.bcuninstaller.com/) | Mass uninstall apps |
+| **BleachBit** | [bleachbit.org](https://www.bleachbit.org/) | Deep disk cleanup |
+| **Privatezilla** | [github.com/builtbybel/privatezilla](https://github.com/builtbybel/privatezilla) | Disable Windows telemetry & spyware |
+| **DoNotSpy11** | [pxc-coding.com/donotspy11](https://pxc-coding.com/donotspy11/) | Disable Win11 telemetry |
+| **LockHunter** | [lockhunter.com](https://lockhunter.com/) | Delete files that refuse to be deleted |
+| **Czkawka** | [github.com/qarmin/czkawka](https://github.com/qarmin/czkawka) | Remove unnecessary & duplicate files |
+| **dupeGuru** | [dupeguru.voltaicideas.net](https://dupeguru.voltaicideas.net/) | Find duplicate files |
+| **WinDirStat** | [windirstat.net](https://windirstat.net/) | Disk usage visualizer & cleanup |
+| **Defraggler** | [ccleaner.com/defraggler](https://www.ccleaner.com/defraggler/) | Disk defrag *(HDDs only — never defrag an SSD)* |
+| **Open-Shell** | [github.com/Open-Shell/Open-Shell-Menu](https://github.com/Open-Shell/Open-Shell-Menu) | Classic Start menu replacement for Win 10/11 |
 
-* Dropbox
+---
 
-* Google Drive
+## 🗂️ Recover Deleted Data
 
-* OneDrive
+I try to avoid this task. Please have **BACKUPS** and educate your family about them.
 
-* ???
+| Tool | Link | Notes |
+|---|---|---|
+| **Recuva** | [ccleaner.com/recuva](https://www.ccleaner.com/recuva/) | Recover deleted files |
+| **TestDisk / PhotoRec** | [cgsecurity.org](https://www.cgsecurity.org/wiki/TestDisk) | Powerful open-source recovery |
+| **Autopsy** | [sleuthkit.org/autopsy](https://www.sleuthkit.org/autopsy/) | Full digital forensics platform |
 
-### Encrypt cloud storage
+More alternatives: [alternativeto.net/software/recuva](https://alternativeto.net/software/recuva/)
 
-* Cryptomator
+---
 
-* Veracrypt
+## 💾 Backups
 
-## Virus and malware
+### The 3-2-1 Rule
 
-I usually install a scanner, do the scan, then remove it and leave Windows Defender, since the hardware of my circle of friends is usually very modest and slow, so antivirus usually make it crawl.
+An easy acronym that covers almost any failure scenario:
 
-* Avira Free - https://www.avira.com/en/free-antivirus-windows
+1. **3** copies of your data
+2. **2** different storage media types
+3. **1** copy offsite (i.e., the cloud)
 
-* Spybot Free Edition - https://www.safer-networking.org/products/spybot-free-edition/
-  * Has a cool "inmunization" feature. Use it.
+### Disk Cloning
 
-* Windows Defender - https://docs.microsoft.com/windows/security/threat-protection/windows-defender-antivirus/windows-defender-antivirus-in-windows-10
+| Tool | Link |
+|---|---|
+| **Clonezilla** | [clonezilla.org](https://clonezilla.org/) |
+| **Rescuezilla** | [rescuezilla.com](https://rescuezilla.com/) |
 
-I leave this after the full scan, inmunization, etc, removing all the others.
+### Backup Software
 
-### Other anti virus tools
+| Tool | Link | Notes |
+|---|---|---|
+| **7-Zip** | [7-zip.org](https://www.7-zip.org/) | Compression & archiving — replaces WinRAR/WinZip |
+| **Duplicati** | [duplicati.com](https://www.duplicati.com/) | Free encrypted cloud backups |
+| **FreeFileSync** | [freefilesync.org](https://freefilesync.org/) | Open-source file sync & backup |
 
-I almost never use these, but good to know them
+### Cloud Storage
 
-* MBAM - https://malwarebytes.com
+| Service | Link |
+|---|---|
+| **pCloud** | [pcloud.com](https://www.pcloud.com/) |
+| **Google Drive** | [drive.google.com](https://drive.google.com/) |
+| **Dropbox** | [dropbox.com](https://www.dropbox.com/) |
+| **OneDrive** | [onedrive.live.com](https://onedrive.live.com/) |
 
-* Rogue Killer - https://www.adlice.com/roguekiller/
+### Encrypt Cloud Storage
 
-* ADW Cleaer - https://www.malwarebytes.com/adwcleaner/
+| Tool | Link |
+|---|---|
+| **Cryptomator** | [cryptomator.org](https://cryptomator.org/) |
+| **VeraCrypt** | [veracrypt.fr](https://www.veracrypt.fr/) |
 
-* OS Armor - https://www.osarmor.com/
+---
 
-* RKill - https://www.bleepingcomputer.com/download/rkill/
+## 🦠 Virus & Malware
 
-* Panda Autorun Vaccine - https://www.pandasecurity.com/en/mediacenter/products/panda-usb-and-autorun-vaccine/
+My approach: run a full scan + immunization, then remove the scanner and leave only Windows Defender. Most family hardware is modest and a full-time AV tends to slow it down.
 
-* Hijack This - obsolete? I think there is a fork that still works
+### Scanners
 
-* ClamAV - open source - https://www.clamav.net/
+| Tool | Link | Notes |
+|---|---|---|
+| **Windows Defender** | Built-in | Leave this as the permanent AV |
+| **Avira Free** | [avira.com](https://www.avira.com/en/free-antivirus-windows) | Good free scanner |
+| **Spybot Free** | [safer-networking.org](https://www.safer-networking.org/products/spybot-free-edition/) | Has a great "immunization" feature — use it |
+| **Malwarebytes (MBAM)** | [malwarebytes.com](https://www.malwarebytes.com) | Great secondary scanner |
+| **ClamAV** | [clamav.net](https://www.clamav.net/) | Open source |
 
-## Check disk health
+### Specialized Tools
 
-* chkdsk
+| Tool | Link |
+|---|---|
+| **RogueKiller** | [adlice.com/roguekiller](https://www.adlice.com/roguekiller/) |
+| **AdwCleaner** | [malwarebytes.com/adwcleaner](https://www.malwarebytes.com/adwcleaner/) |
+| **RKill** | [bleepingcomputer.com/download/rkill](https://www.bleepingcomputer.com/download/rkill/) |
+| **Panda USB Vaccine** | [pandasecurity.com](https://www.pandasecurity.com/en/mediacenter/products/panda-usb-and-autorun-vaccine/) |
+| **OSArmor** | [osarmor.com](https://www.osarmor.com/) |
 
-* https://hddscan.com/
+> [!TIP]
+> In Chrome or Firefox, always install **[uBlock Origin](https://ublockorigin.com/)** — it's a must.
 
-* https://crystalmark.info/en/software/crystaldiskinfo/
+---
 
-etc - TODO
+## 🔍 Disk Health
 
-## Install / update user software
+| Tool | Link | Notes |
+|---|---|---|
+| **CrystalDiskInfo** | [crystalmark.info](https://crystalmark.info/en/software/crystaldiskinfo/) | S.M.A.R.T. health monitoring |
+| **HDDScan** | [hddscan.com](https://hddscan.com/) | Deep scan for HDD/SSD/NVMe |
+| **chkdsk** | Built into Windows | Run `chkdsk /f /r` in CMD as admin |
 
-Install or update software in bulk. Save time and effort.
+---
 
-* Patch My PC - https://patchmypc.com/home-updater
+## 📦 Install / Update Software in Bulk
 
-* Ninite - https://ninite.com/
+Save time — install and update everything at once.
 
-* Chocolatey - https://chocolatey.org/
+| Tool | Link | Notes |
+|---|---|---|
+| **Winget** | Built into Windows 11 | Official Microsoft package manager |
+| **Ninite** | [ninite.com](https://ninite.com/) | Simple bulk installer, no bloat |
+| **Chocolatey** | [chocolatey.org](https://chocolatey.org/) | CLI package manager |
+| **Patch My PC** | [patchmypc.com](https://patchmypc.com/home-updater) | Auto-update installed software |
+| **Snappy Driver Installer** | [sdi-tool.org](https://sdi-tool.org/) | Offline driver installer |
+| **Just Install** | [github.com/just-install/just-install](https://github.com/just-install/just-install) | Minimal CLI installer |
 
-* Snappy - drivers - https://sdi-tool.org/
+---
 
-* Just Install - https://github.com/just-install/just-install
+## 📁 File Managers & Search
 
-Within Chrome or Firefox: run **uBlock Origin** is a must.
+| Tool | Link | Notes |
+|---|---|---|
+| **Everything** | [voidtools.com](https://www.voidtools.com/en-us/) | Instant file search — far better than Windows Search |
+| **Explorer++** | [explorerplusplus.com](https://explorerplusplus.com/) | Tabbed Windows Explorer replacement |
+| **Total Commander** | [ghisler.com](https://www.ghisler.com/) | Dual-pane, very powerful |
+| **Far Manager** | [farmanager.com](https://www.farmanager.com/) | Console-style dual-pane |
+| **MultiCommander** | [multicommander.com](http://multicommander.com/) | Feature-rich dual-pane |
+| **Meld** | [meldmerge.org](https://meldmerge.org/) | Merge/compare files, dirs, and version-controlled repos |
 
-## File manager
+---
 
-* Explorer++
+## 🔧 Hardware Info & Diagnostics
 
-* Total Commander - https://www.ghisler.com/
+| Tool | Link | Purpose |
+|---|---|---|
+| **HWiNFO** | [hwinfo.com](https://www.hwinfo.com/) | Detailed hardware info & real-time sensors |
+| **Speccy** | [ccleaner.com/speccy](https://www.ccleaner.com/speccy) | Quick hardware overview |
+| **CPU-Z** | [cpuid.com/softwares/cpu-z.html](https://www.cpuid.com/softwares/cpu-z.html) | CPU, RAM, motherboard details |
+| **GPU-Z** | [techpowerup.com/gpuz](https://www.techpowerup.com/gpuz/) | GPU details |
+| **WhocrashED** | [resplendence.com/whocrashed](https://www.resplendence.com/whocrashed) | Identifies drivers causing BSODs |
+| **CrystalDiskMark** | [crystalmark.info](https://crystalmark.info/en/software/crystaldiskmark/) | Disk speed benchmark |
+| **FurMark** | [geeks3d.com/furmark](https://www.geeks3d.com/furmark/) | GPU stress test |
+| **Prime95** | [mersenne.org/prime95](https://www.mersenne.org/prime95/) | CPU stress test |
 
-* Far Manager - https://www.farmanager.com/
+---
 
-* MultiCommander - http://multicommander.com/
+## 🎨 Graphics & Media
 
-* Everything - file search local, way better than cortana: https://www.voidtools.com/en-us/
+### Video Editing
 
-## Merge, compare files, directories, and version controlled projects.
+| Tool | Link |
+|---|---|
+| **DaVinci Resolve** | [blackmagicdesign.com/products/davinciresolve](https://www.blackmagicdesign.com/products/davinciresolve/) |
+| **OpenShot** | [openshot.org](https://www.openshot.org/) |
+| **Kdenlive** | [kdenlive.org](https://kdenlive.org/) |
+| **Pitivi** | [pitivi.org](https://www.pitivi.org/) |
+| **Cinelerra-GG** | [cinelerra-gg.org](https://www.cinelerra-gg.org/) |
 
-* Meld - https://meldmerge.org/
+### Screen Capture & Broadcasting
 
-# Hardware check
+| Tool | Link |
+|---|---|
+| **OBS Studio** | [obsproject.com](https://obsproject.com/) |
+| **ScreenPresso** | [screenpresso.com](https://www.screenpresso.com/) |
 
-* Who Crashed - https://www.resplendence.com/whocrashed - reveals the drivers responsible for crashing your computer
+### Image Editing & Graphics
 
-Getting info about the hardware
+| Tool | Link |
+|---|---|
+| **GIMP** | [gimp.org](https://www.gimp.org/) |
+| **Paint.NET** | [getpaint.net](https://www.getpaint.net/) |
+| **Inkscape** | [inkscape.org](https://inkscape.org/) |
+| **IrfanView** | [irfanview.com](https://www.irfanview.com/) |
+| **Aseprite** | [aseprite.org](https://www.aseprite.org/) |
+| **Krita** | [krita.org](https://krita.org/) |
 
-* Speccy - https://www.ccleaner.com/speccy
+### 3D
 
-* HWiNFO - https://www.hwinfo.com/
+| Tool | Link |
+|---|---|
+| **Blender** | [blender.org](https://www.blender.org/) |
+| **Wings 3D** | [wings3d.com](http://www.wings3d.com/) |
 
-## Testing
+---
 
-TO-DO
+## 📝 Text Editors
 
-## Repairing
+| Tool | Link |
+|---|---|
+| **VS Code** | [code.visualstudio.com](https://code.visualstudio.com/) |
+| **Notepad++** | [notepad-plus-plus.org](https://notepad-plus-plus.org/) |
+| **CudaText** | [cudatext.github.io](https://cudatext.github.io/) |
+| **Sublime Text** | [sublimetext.com](https://www.sublimetext.com/) |
 
-TO-DO
+---
 
-## Replacing
+## 🌍 Beyond Windows
 
-TO-DO
+### Automation & Shortcuts
 
-## Reusing
+| Tool | Link |
+|---|---|
+| **FastKeys** | [fastkeysautomation.com](https://www.fastkeysautomation.com/) |
+| **AutoHotkey** | [autohotkey.com](https://www.autohotkey.com/) |
 
-TO-DO
+### Virtual Machines
 
-# Some other useful tools 
+| Tool | Link |
+|---|---|
+| **VirtualBox** | [virtualbox.org](https://www.virtualbox.org/) |
+| **QEMU** | [qemu.org](https://www.qemu.org/) |
 
-Some apps that are very useful 
+### Retro & DOS
 
-## Video editing 
+**DOSBox** — [dosbox.com](https://www.dosbox.com/) — Retro fun and games without loot boxes or DLCs. The golden age of computing.
 
-* Davinci Resolve - https://www.blackmagicdesign.com/products/davinciresolve/ 
-* Openshot
-* Pitivi
-* Cinelerra
+### Hackintosh
 
-## Shortcuts 
+**Hackintosh.com** — [hackintosh.com](https://hackintosh.com/) — Everything you need to run macOS on unsupported hardware.
 
-* Fatkeys - https://www.fastkeysautomation.com/
+---
 
-## Screen capture and broadcast 
+## 📚 Quick Reference — All Tools
 
-* OBS studio - https://obsproject.com/es
-* ScreenPresso - https://www.screenpresso.com/
+| Tool | Link |
+|---|---|
+| MassGrave (clean ISOs) | [massgrave.dev](https://massgrave.dev) |
+| MAS (Windows Activation) | [github.com/massgravel/Microsoft-Activation-Scripts](https://github.com/massgravel/Microsoft-Activation-Scripts) |
+| Rufus | [rufus.ie](https://rufus.ie) |
+| NVCleanstall | [techpowerup.com/nvcleanstall](https://www.techpowerup.com/nvcleanstall/) |
+| AMD Drivers (official) | [amd.com/en/support](https://www.amd.com/en/support/download/drivers.html) |
+| Radeon Software Slimmer | [github.com/GSDragoon/RadeonSoftwareSlimmer](https://github.com/GSDragoon/RadeonSoftwareSlimmer) |
+| AtlasOS | [atlasos.net](https://atlasos.net) |
+| ReviOS | [revi.cc](https://revi.cc) |
+| AME Wizard | [ameliorated.io](https://ameliorated.io) |
+| ChrisTitus Windows Utility | [christitus.com/win](https://christitus.com/win) |
+| uBlock Origin | [ublockorigin.com](https://ublockorigin.com/) |
+| Snappy Driver Installer | [sdi-tool.org](https://sdi-tool.org/) |
+| Ninite | [ninite.com](https://ninite.com/) |
+| Chocolatey | [chocolatey.org](https://chocolatey.org/) |
+| Everything (file search) | [voidtools.com](https://www.voidtools.com/) |
+| RustDesk | [rustdesk.com](https://rustdesk.com/) |
+| CrystalDiskInfo | [crystalmark.info](https://crystalmark.info/en/software/crystaldiskinfo/) |
+| HWiNFO | [hwinfo.com](https://www.hwinfo.com/) |
+| OBS Studio | [obsproject.com](https://obsproject.com/) |
+| GIMP | [gimp.org](https://www.gimp.org/) |
+| Blender | [blender.org](https://www.blender.org/) |
+| VS Code | [code.visualstudio.com](https://code.visualstudio.com/) |
+| VirtualBox | [virtualbox.org](https://www.virtualbox.org/) |
 
-## Graphics
+---
 
-* Paint NET
-* GIMP
-* Inkscape 
-* Irfanview 
-* ASE Sprite Editor
-* Wings 3D
-* Blender
+## 📌 Version
 
-## Editors for text and more
+`v0.1.0` — March 2026 — Merged PC optimization guide + repaired and completed all links
 
-* VS Code
+---
 
-* Cudatext
+<div align="center">
 
-* Notepad++
+*This list is NOT exhaustive, nor does it contain "the TRUE word of GOD himself."*  
+*It's just what* works for me™
 
-# Beyond Windows
+If you know a better way — send a pull request and improve it!
 
-## Linux
+**For now, this is the way.**
 
-* Linux Mint - https://linuxmint.com/
-
-## DosBox
-
-Retro fun, and games with no shitty loot boxes or milking you for money with DLCs... the golden age of computing...
-
-* https://www.dosbox.com/
-
-## Virtual Computers
-
-* Virtual Box - https://www.virtualbox.org/
-
-* QEMU - https://www.qemu.org/
-
-## Hackintosh
-
-Hackintosh.com links to everything you need to build a Hackintosh and get macOS Monterey (macOS 12) as well as many earlier versions of Mac OS X running on an unsupported computer
-
-* https://hackintosh.com/
+</div>
